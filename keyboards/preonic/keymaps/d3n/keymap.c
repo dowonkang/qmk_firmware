@@ -20,23 +20,31 @@
 enum preonic_layers {
     // clang-format off
     _QWERTY,
+    _ARROWS,
     _LOWER,
     _RAISE,
+    _NUMPAD,
     _ADJUST
     // clang-format on
 };
 
 enum preonic_keycodes {
     // clang-format off
-    QWERTY = SAFE_RANGE,
+    DEFAULT = SAFE_RANGE,
     LOWER,
     RAISE,
-    BACKLIT
+    LEFT,
+    DOWN,
+    RIGHT
     // clang-format on
 };
 
 #define MEN_ALT RALT_T(KC_APPLICATION)
 #define ENT_SFT KC_SFTENT
+#define NUMPAD TG(_NUMPAD)
+#define ENT_LOW LT(_LOWER, KC_ENTER)
+#define SPC_RSE LT(_RAISE, KC_SPACE)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Qwerty
@@ -49,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │ Shift │   Z   │   X   │   C   │   V   │   B   │   N   │   M   │   ,   │   .   │   /   │ENT/SFT│
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │ Brite │ Ctrl  │  GUI  │  Alt  │ Enter │ Lower │ Raise │ Space │Mn/Alt │ Left  │ Down  │ Right │
+     * │ Numpad│ Ctrl  │  GUI  │  Alt  │ Lower │ Enter │ Space │ Raise │Mn/Alt │ Left  │ Down  │ Right │
      * └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
      */
     [_QWERTY] = LAYOUT_preonic_grid(
@@ -58,29 +66,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, \
         KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, ENT_SFT, \
-        BACKLIT, KC_LCTL, KC_LGUI, KC_LALT, KC_ENT,  LOWER,   RAISE,   KC_SPC,  MEN_ALT, KC_LEFT, KC_DOWN, KC_RGHT
+        NUMPAD,  KC_LCTL, KC_LGUI, KC_LALT, LOWER,   ENT_LOW, SPC_RSE, RAISE,   MEN_ALT, LEFT,    DOWN,    RIGHT
+        // clang-format on
+        ),
+
+    /* Arrows
+     * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
+     * │Default│       │       │       │       │       │       │       │       │       │       │       │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │       │       │       │       │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │       │       │       │       │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │       │       │  Up   │       │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │       │ Left  │ Down  │ Right │
+     * └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
+     */
+    [_ARROWS] = LAYOUT_preonic_grid(
+        // clang-format off
+        DEFAULT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_UP,   _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
         // clang-format on
         ),
 
     /* Lower
      * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-     * │   `   │       │       │       │       │       │       │       │       │   -   │   =   │  Del  │
+     * │   `   │       │       │       │       │       │       │       │       │       │   -   │   =   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │       │       │       │       │       │       │   [   │   ]   │       │
+     * │       │       │       │       │       │       │       │       │       │       │   [   │   ]   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │       │       │       │ Left  │ Down  │  Up   │ Right │       │       │
+     * │       │       │       │       │       │       │ Left  │ Down  │  Up   │ Right │   {   │   }   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │       │       │       │       │       │       │ W BCK │  Up   │ W FWD │
+     * │       │       │       │       │       │       │       │       │       │ Home  │  Up   │  End  │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │       │       │       │       │       │       │       │       │ Left  │ Down  │ Right │
      * └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
      */
     [_LOWER] = LAYOUT_preonic_grid(
         // clang-format off
-        KC_GRV,  _______, _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_DEL, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, _______, \
-        _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_WBAK, KC_UP,   KC_WFWD, \
+        KC_GRV,  _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MINS, KC_EQL, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, \
+        _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_LCBR, KC_RCBR, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_UP,   KC_END, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT
         // clang-format on
         ),
@@ -91,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │  F11  │  F12  │ Home  │ PgUp  │       │       │       │       │       │       │  Ins  │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │ End   │ PgDn  │       │       │ PrtSc │ ScrLk │ Pause │       │       │
+     * │ Caps  │       │       │ End   │ PgDn  │       │       │ PrtSc │ ScrLk │ Pause │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │ Prev  │ Play  │ Stop  │ Next  │       │       │ Mute  │ Vol - │ Vol + │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
@@ -100,11 +131,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT_preonic_grid(
         // clang-format off
-	KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
-	_______, KC_F11,  KC_F12,  KC_HOME, KC_PGUP, _______, _______, _______, _______, _______, _______, KC_INS, \
-        _______, _______, _______, KC_END,  KC_PGDN, _______, _______, KC_PSCR, KC_SLCK, KC_PAUS, _______, _______, \
+        KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_DEL, \
+        _______, KC_F11,  KC_F12,  KC_HOME, KC_PGUP, _______, _______, _______, _______, _______, _______, KC_INS, \
+        KC_CAPS, _______, _______, KC_END,  KC_PGDN, _______, _______, KC_PSCR, KC_SLCK, KC_PAUS, _______, _______, \
         _______, KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+        // clang-format on
+        ),
+
+    /* Numpad
+     * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
+     * │       │       │       │       │       │       │       │       │ NumLk │   /   │   *   │   -   │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │   7   │   8   │   9   │   +   │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │   4   │   5   │   6   │   =   │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │   1   │   2   │   3   │ Enter │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │   0   │       │  Del  │       │
+     * └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
+     */
+    [_NUMPAD] = LAYOUT_preonic_grid(
+        // clang-format off
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PENT, \
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P0,   XXXXXXX, KC_PDOT, XXXXXXX
         // clang-format on
         ),
 
@@ -135,11 +189,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case QWERTY:
+        case DEFAULT:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_QWERTY);
+                layer_move(_QWERTY);
+                register_code(KC_ESCAPE);
+            } else {
+                unregister_code(KC_ESCAPE);
             }
-            return false;
             break;
         case LOWER:
             if (record->event.pressed) {
@@ -161,22 +217,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case BACKLIT:
+        case LEFT:
             if (record->event.pressed) {
-                register_code(KC_RSFT);
-#ifdef BACKLIGHT_ENABLE
-                backlight_step();
-#endif
-#ifdef __AVR__
-                writePinLow(E6);
-#endif
+                layer_on(_ARROWS);
+                register_code(KC_LEFT);
             } else {
-                unregister_code(KC_RSFT);
-#ifdef __AVR__
-                writePinHigh(E6);
-#endif
+                unregister_code(KC_LEFT);
             }
-            return false;
+            break;
+        case DOWN:
+            if (record->event.pressed) {
+                layer_on(_ARROWS);
+                register_code(KC_DOWN);
+            } else {
+                unregister_code(KC_DOWN);
+            }
+            break;
+        case RIGHT:
+            if (record->event.pressed) {
+                layer_on(_ARROWS);
+                register_code(KC_RIGHT);
+            } else {
+                unregister_code(KC_RIGHT);
+            }
             break;
     }
     return true;
