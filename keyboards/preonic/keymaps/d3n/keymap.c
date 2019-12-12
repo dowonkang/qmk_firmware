@@ -197,6 +197,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
                 unregister_code(KC_ESCAPE);
             }
+            return false;
             break;
         case LOWER:
             if (record->event.pressed) {
