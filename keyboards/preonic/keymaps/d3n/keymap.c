@@ -44,7 +44,7 @@ enum preonic_keycodes {
 #define NUMPAD TG(_NUMPAD)
 #define ENT_LOW LT(_LOWER, KC_ENTER)
 #define SPC_RSE LT(_RAISE, KC_SPACE)
-#define MEN_ALT RALT_T(KC_APPLICATION)
+#define MEN_ALT LALT_T(KC_APPLICATION)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
