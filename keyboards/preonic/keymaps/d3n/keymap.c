@@ -24,6 +24,7 @@ enum preonic_layers {
     _LOWER,
     _RAISE,
     _NUMPAD,
+    _MOUSE,
     _ADJUST
     // clang-format on
 };
@@ -42,6 +43,7 @@ enum preonic_keycodes {
 #define ESCTRL LCTL_T(KC_ESCAPE)
 #define ENT_SFT KC_SFTENT
 #define NUMPAD TG(_NUMPAD)
+#define MOUSE TO(_MOUSE)
 #define ENT_LOW LT(_LOWER, KC_ENTER)
 #define SPC_RSE LT(_RAISE, KC_SPACE)
 #define MEN_ALT LALT_T(KC_APPLICATION)
@@ -122,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │ Prev  │ Play  │ Stop  │ Next  │       │       │ Mute  │ Vol - │ Vol + │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │       │       │       │       │       │       │       │       │       │
+     * │ MOUSE │       │       │       │       │       │       │       │       │       │       │       │
      * └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
      */
     [_RAISE] = LAYOUT_preonic_grid(
@@ -130,12 +132,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, KC_INS,  KC_HOME, KC_PGUP, _______, _______, \
         KC_CAPS, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, KC_DEL,  KC_END,  KC_PGDN, _______, _______, \
         _______, KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+        MOUSE,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
     /* Numpad
      * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-     * │       │       │       │       │       │       │       │       │ NumLk │   /   │   *   │   -   │
+     * │DEFAULT│       │       │       │       │       │       │       │ NumLk │   /   │   *   │   -   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │       │       │       │       │       │       │       │   7   │   8   │   9   │   +   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
@@ -147,11 +149,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
      */
     [_NUMPAD] = LAYOUT_preonic_grid(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, \
+        DEFAULT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, \
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, \
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, \
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PENT, \
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P0,   XXXXXXX, KC_PDOT, XXXXXXX
+    ),
+
+    /* Mouse
+     * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
+     * │DEFAULT│       │       │       │       │       │       │       │       │ ACL 0 │ ACL 1 │ ACL 2 │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │       │       │       │ WH UP │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │       │       │       │       │       │ WH DN │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │       │ BTN 3 │       │       │ WH L  │  UP   │ WH R  │
+     * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     * │       │       │       │       │       │ BTN 1 │ BTN 2 │       │       │ LEFT  │ DOWN  │ RIGHT │
+     * └───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
+     */
+    [_MOUSE] = LAYOUT_preonic_grid(
+        DEFAULT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_U, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_D, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX, XXXXXXX, KC_WH_L, KC_MS_U, KC_WH_R, \
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R
     ),
 
     /* Adjust (Lower + Raise)
