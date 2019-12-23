@@ -32,8 +32,6 @@ enum preonic_layers {
 enum preonic_keycodes {
     // clang-format off
     DEFAULT = SAFE_RANGE,
-    LOWER,
-    RAISE,
     LOW_ENT,
     RSE_SPC,
     LEFT,
@@ -46,8 +44,6 @@ enum preonic_keycodes {
 #define ENT_SFT KC_SFTENT
 #define NUMPAD TG(_NUMPAD)
 #define MOUSE TO(_MOUSE)
-#define ENT_LOW LT(_LOWER, KC_ENTER)
-#define SPC_RSE LT(_RAISE, KC_SPACE)
 #define MEN_ALT LALT_T(KC_APPLICATION)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -71,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, \
         ESCTRL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, ENT_SFT, \
-        NUMPAD,  KC_LCTL, KC_LGUI, KC_LALT, ENT_LOW, LOWER,   RAISE,   SPC_RSE, MEN_ALT, LEFT,    DOWN,    RIGHT
+        NUMPAD,  KC_LCTL, KC_LGUI, KC_LALT, LOW_ENT, LOW_ENT, RSE_SPC, RSE_SPC, MEN_ALT, LEFT,    DOWN,    RIGHT
     ),
 
     /* Arrows
@@ -212,54 +208,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case LOWER:
-            if (record->event.pressed) {
-                layer_on(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-            break;
-        case RAISE:
-            if (record->event.pressed) {
-                layer_on(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-            break;
         case LOW_ENT:
             if (record->event.pressed) {
                 sc_timer = timer_read();
                 layer_on(_LOWER);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
-
             } else {
                 layer_off(_LOWER);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
 
                 if (timer_elapsed(sc_timer) < TAPPING_TERM) {
-                    tap_code(KC_ENTER);
+                    register_code(KC_ENTER);
+                    unregister_code(KC_ENTER);
                 }
             }
+            return false;
+            break;
         case RSE_SPC:
             if (record->event.pressed) {
                 sc_timer = timer_read();
                 layer_on(_RAISE);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
-
             } else {
                 layer_off(_RAISE);
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
 
                 if (timer_elapsed(sc_timer) < TAPPING_TERM) {
-                    tap_code(KC_SPACE);
+                    register_code(KC_SPACE);
+                    unregister_code(KC_SPACE);
                 }
             }
+            return false;
+            break;
         case LEFT:
             if (record->event.pressed) {
                 layer_on(_ARROWS);
@@ -361,8 +341,8 @@ void matrix_scan_user(void) {
 
 bool music_mask_user(uint16_t keycode) {
     switch (keycode) {
-        case RAISE:
-        case LOWER:
+        case RSE_SPC:
+        case LOW_ENT:
             return false;
         default:
             return true;
