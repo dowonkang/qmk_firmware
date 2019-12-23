@@ -34,6 +34,8 @@ enum preonic_keycodes {
     DEFAULT = SAFE_RANGE,
     LOWER,
     RAISE,
+    LOW_ENT,
+    RSE_SPC,
     LEFT,
     DOWN,
     RIGHT
@@ -200,6 +202,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format on
 };
 
+static uint16_t sc_timer = 0;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case DEFAULT:
@@ -228,6 +232,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
+        case LOW_ENT:
+            if (record->event.pressed) {
+                sc_timer = timer_read();
+                layer_on(_LOWER);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+
+            } else {
+                layer_off(_LOWER);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+
+                if (timer_elapsed(sc_timer) < TAPPING_TERM) {
+                    tap_code(KC_ENTER);
+                }
+            }
+        case RSE_SPC:
+            if (record->event.pressed) {
+                sc_timer = timer_read();
+                layer_on(_RAISE);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+
+            } else {
+                layer_off(_RAISE);
+                update_tri_layer(_LOWER, _RAISE, _ADJUST);
+
+                if (timer_elapsed(sc_timer) < TAPPING_TERM) {
+                    tap_code(KC_SPACE);
+                }
+            }
         case LEFT:
             if (record->event.pressed) {
                 layer_on(_ARROWS);
