@@ -37,11 +37,6 @@ enum preonic_keycodes {
     // clang-format on
 };
 
-#define ESCTRL LCTL_T(KC_ESCAPE)
-#define ENT_SFT KC_SFTENT
-#define MOUSE TO(_MOUSE)
-#define MEN_ALT LALT_T(KC_APPLICATION)
-
 // Let's dance
 typedef struct {
     bool is_press_action;
@@ -50,12 +45,21 @@ typedef struct {
 
 enum { SINGLE_TAP = 1, SINGLE_HOLD = 2, DOUBLE_TAP = 3, DOUBLE_HOLD = 4 };
 
-enum { FOO = 0 };
+enum { MV = 0, RALT };
 
 int cur_dance(qk_tap_dance_state_t *state);
 
-void foo_finished(qk_tap_dance_state_t *state, void *user_data);
-void foo_reset(qk_tap_dance_state_t *state, void *user_data);
+void mv_finished(qk_tap_dance_state_t *state, void *user_data);
+void mv_reset(qk_tap_dance_state_t *state, void *user_data);
+
+void ralt_finished(qk_tap_dance_state_t *state, void *user_data);
+void ralt_reset(qk_tap_dance_state_t *state, void *user_data);
+
+#define ESCTRL LCTL_T(KC_ESCAPE)
+#define ENT_SFT KC_SFTENT
+#define MEN_ALT LALT_T(KC_APPLICATION)
+#define TD_MV TD(MV)
+#define TD_RALT TD(RALT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
@@ -70,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │ Shift │   Z   │   X   │   C   │   V   │   B   │   N   │   M   │   ,   │   .   │   /   │ENT/SFT│
      * ├───────┼───────┼───────┼───────┼───────┴───────┼───────┴───────┼───────┼───────┼───────┼───────┤
-     * │ FOO   │ Ctrl  │  GUI  │  Alt  │  Enter/Lower  │  Raise/Space  │Mn/Alt │ Left  │ Down  │ Right │
+     * │ MV    │ Ctrl  │  GUI  │  Alt  │  Enter/Lower  │  Raise/Space  │Mn/Alt │ Left  │ Down  │ Right │
      * └───────┴───────┴───────┴───────┴───────────────┴───────────────┴───────┴───────┴───────┴───────┘
      */
     [_QWERTY] = LAYOUT_preonic_2x2u(
@@ -78,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, \
         ESCTRL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, ENT_SFT, \
-        TD(FOO), KC_LCTL, KC_LGUI, KC_LALT,          LOW_ENT, RSE_SPC,          MEN_ALT, KC_LEFT, KC_DOWN, KC_RIGHT
+        TD_MV,   KC_LCTL, KC_LGUI, KC_LALT,          LOW_ENT, RSE_SPC,          TD_RALT, KC_LEFT, KC_DOWN, KC_RIGHT
     ),
 
     /* Arrows
@@ -133,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │ Prev  │ Play  │ Stop  │ Next  │       │ NumLk │ Mute  │ Vol - │ Vol + │       │       │
      * ├───────┼───────┼───────┼───────┼───────┴───────┼───────┴───────┼───────┼───────┼───────┼───────┤
-     * │ MOUSE │       │       │       │               │               │       │       │       │       │
+     * │       │       │       │       │               │               │       │       │       │       │
      * └───────┴───────┴───────┴───────┴───────────────┴───────────────┴───────┴───────┴───────┴───────┘
      */
     [_RAISE] = LAYOUT_preonic_2x2u(
@@ -141,16 +145,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, KC_INS,  KC_HOME, KC_PGUP, _______, _______, \
         KC_CAPS, KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, KC_DEL,  KC_END,  KC_PGDN, _______, _______, \
         _______, KC_MPRV, KC_MPLY, KC_MSTP, KC_MNXT, _______, KC_NLCK, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______, \
-        MOUSE,   _______, _______, _______,          _______, _______,          _______, _______, _______, _______
+        _______, _______, _______, _______,          _______, _______,          _______, _______, _______, _______
     ),
 
     /* Numpad
      * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-     * │DEFAULT│       │       │       │       │       │       │       │ NumLk │   /   │   *   │   -   │
+     * │DEFAULT│       │       │       │       │       │       │       │ NumLk │   /   │   *   │  BKSP │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │       │       │       │       │       │   7   │   8   │   9   │   +   │
+     * │       │       │       │       │       │       │       │       │   7   │   8   │   9   │   -   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │       │       │       │       │       │   4   │   5   │   6   │   =   │
+     * │       │       │       │       │       │       │       │       │   4   │   5   │   6   │   +   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │       │       │       │       │       │       │       │   1   │   2   │   3   │ Enter │
      * ├───────┼───────┼───────┼───────┼───────┴───────┼───────┴───────┼───────┼───────┼───────┼───────┤
@@ -158,11 +162,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * └───────┴───────┴───────┴───────┴───────────────┴───────────────┴───────┴───────┴───────┴───────┘
      */
     [_NUMPAD] = LAYOUT_preonic_2x2u(
-        DEFAULT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, \
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, \
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, \
+        DEFAULT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_PSLS, KC_PAST, KC_BSPC, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, \
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P1,   KC_P2,   KC_P3,   KC_PENT, \
-        _______, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX,          KC_P0,   XXXXXXX, KC_PDOT, XXXXXXX
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX,          TD_RALT, XXXXXXX, KC_PDOT, XXXXXXX
     ),
 
     /* Mouse
@@ -375,11 +379,11 @@ int cur_dance(qk_tap_dance_state_t *state) {
     return 5;
 }
 
-static tap foo_state = {.is_press_action = true, .state = 0};
+static tap mv_state = {.is_press_action = true, .state = 0};
 
-void foo_finished(qk_tap_dance_state_t *state, void *user_data) {
-    foo_state.state = cur_dance(state);
-    switch (foo_state.state) {
+void mv_finished(qk_tap_dance_state_t *state, void *user_data) {
+    mv_state.state = cur_dance(state);
+    switch (mv_state.state) {
         case SINGLE_TAP:
             if (layer_state_is(_ARROWS)) {
                 layer_off(_ARROWS);
@@ -389,6 +393,54 @@ void foo_finished(qk_tap_dance_state_t *state, void *user_data) {
             break;
         case SINGLE_HOLD:
             layer_on(_ARROWS);
+            break;
+        case DOUBLE_TAP:
+            if (layer_state_is(_MOUSE)) {
+                layer_off(_MOUSE);
+            } else {
+                layer_move(_MOUSE);
+            }
+            break;
+        case DOUBLE_HOLD:
+            layer_on(_MOUSE);
+            break;
+    }
+}
+
+void mv_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (mv_state.state) {
+        case SINGLE_TAP:
+            break;
+        case SINGLE_HOLD:
+            layer_off(_ARROWS);
+            break;
+        case DOUBLE_TAP:
+            break;
+        case DOUBLE_HOLD:
+            layer_off(_MOUSE);
+            break;
+    }
+    mv_state.state = 0;
+}
+
+static tap ralt_state      = {.is_press_action = true, .state = 0};
+bool       kp0_registered  = false;
+bool       menu_registered = false;
+
+void ralt_finished(qk_tap_dance_state_t *state, void *user_data) {
+    ralt_state.state = cur_dance(state);
+    switch (ralt_state.state) {
+        case SINGLE_TAP:
+            if (layer_state_is(_NUMPAD)) {
+                register_code(KC_KP_0);
+                kp0_registered = true;
+            } else {
+                register_code(KC_APPLICATION);
+                menu_registered = true;
+            }
+            break;
+        case SINGLE_HOLD:
+            register_code(KC_LALT);
             break;
         case DOUBLE_TAP:
             if (layer_state_is(_NUMPAD)) {
@@ -412,12 +464,18 @@ void foo_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void foo_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (foo_state.state) {
+void ralt_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (ralt_state.state) {
         case SINGLE_TAP:
+            if (kp0_registered) {
+                unregister_code(KC_KP_0);
+            }
+            if (menu_registered) {
+                unregister_code(KC_APPLICATION);
+            }
             break;
         case SINGLE_HOLD:
-            layer_off(_ARROWS);
+            unregister_code(KC_LALT);
             break;
         case DOUBLE_TAP:
             break;
@@ -428,7 +486,9 @@ void foo_reset(qk_tap_dance_state_t *state, void *user_data) {
             layer_off(_NUMPAD);
             break;
     }
-    foo_state.state = 0;
+    ralt_state.state = 0;
+    kp0_registered   = false;
+    menu_registered  = false;
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {[FOO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, foo_finished, foo_reset)};
+qk_tap_dance_action_t tap_dance_actions[] = {[MV] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mv_finished, mv_reset), [RALT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ralt_finished, ralt_reset)};
