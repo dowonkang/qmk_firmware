@@ -32,7 +32,7 @@ enum preonic_layers {
 enum preonic_keycodes {
     // clang-format off
     DEFAULT = SAFE_RANGE,
-    LOW_ENT,
+    LOW_SPC,
     RSE_SPC
     // clang-format on
 };
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, \
         ESCTRL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, ENT_SFT, \
-        TD_MV,   KC_LCTL, KC_LGUI, KC_LALT,          LOW_ENT, RSE_SPC,          TD_RALT, KC_LEFT, KC_DOWN, KC_RIGHT
+        TD_MV,   KC_LCTL, KC_LGUI, KC_LALT,          LOW_SPC, RSE_SPC,          TD_RALT, KC_LEFT, KC_DOWN, KC_RIGHT
     ),
 
     /* Arrows
@@ -223,7 +223,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case LOW_ENT:
+        case LOW_SPC:
             if (record->event.pressed) {
                 sc_timer = timer_read();
                 layer_on(_LOWER);
@@ -233,8 +233,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 update_tri_layer(_LOWER, _RAISE, _ADJUST);
 
                 if (timer_elapsed(sc_timer) < TAPPING_TERM) {
-                    register_code(KC_ENTER);
-                    unregister_code(KC_ENTER);
+                    register_code(KC_SPACE);
+                    unregister_code(KC_SPACE);
                 }
             }
             return false;
@@ -333,7 +333,7 @@ void matrix_scan_user(void) {
 bool music_mask_user(uint16_t keycode) {
     switch (keycode) {
         case RSE_SPC:
-        case LOW_ENT:
+        case LOW_SPC:
             return false;
         default:
             return true;
