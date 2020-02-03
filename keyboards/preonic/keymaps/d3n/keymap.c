@@ -91,20 +91,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      * │       │   !   │   @   │   #   │   $   │   %   │   ^   │   &   │   *   │   (   │   )   │   ~   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │ Back  │  Up   │Forward│       │       │   ^   │   &   │   *   │   (   │   )   │       │
+     * │       │       │ Back  │  Up   │Forward│ PgUp  │   6   │   7   │   8   │   9   │   0   │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │ Left  │ Down  │ Right │       │       │   6   │   7   │   8   │   9   │   0   │       │
+     * │       │       │ Left  │ Down  │ Right │ PgDn  │   '   │   -   │   =   │       │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │       │       │       │       │       │   -   │   =   │   [   │   ]   │   \   │       │
+     * │       │       │       │       │       │       │   \   │   [   │   ]   │       │       │       │
      * ├───────┼───────┼───────┼───────┼───────┴───────┼───────┴───────┼───────┼───────┼───────┼───────┤
      * │       │       │       │       │               │               │ Home  │ PgDn  │ PgUp  │  End  │
      * └───────┴───────┴───────┴───────┴───────────────┴───────────────┴───────┴───────┴───────┴───────┘
      */
     [_LOWER] = LAYOUT_preonic_2x2u(
         _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD, \
-        _______, KC_WBAK, KC_UP,   KC_WFWD, _______, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
-        _______, _______, _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, _______, \
+        _______, _______, KC_WBAK, KC_UP,   KC_WFWD, KC_PGUP, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
+        _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_QUOT, KC_MINS, KC_EQL,  _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, KC_BSLS, KC_LBRC, KC_RBRC, _______, _______, _______, \
         _______, _______, _______, _______,          _______, _______,          KC_HOME, KC_PGDN, KC_PGUP, KC_END
     ),
 
@@ -112,9 +112,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      * │       │   !   │   @   │   #   │   $   │   %   │   ^   │   &   │   *   │   (   │   )   │ PrtScr│
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │   ~   │   !   │   @   │   #   │   $   │   %   │ Home  │ PgDn  │ PgUp  │  End  │  Ins  │  Del  │
+     * │   `   │   1   │   2   │   3   │   4   │   5   │ Home  │ PgDn  │ PgUp  │  End  │  Ins  │  Del  │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │   `   │   1   │   2   │   3   │   4   │   5   │ Left  │ Down  │  Up   │ Right │       │       │
+     * │       │   6   │   7   │   8   │   9   │   0   │ Left  │ Down  │  Up   │ Right │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │       │       │       │       │       │       │ Prev  │ Vol - │ Vol + │ Next  │       │       │
      * ├───────┼───────┼───────┼───────┼───────┴───────┼───────┴───────┼───────┼───────┼───────┼───────┤
@@ -123,8 +123,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT_preonic_2x2u(
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PSCR, \
-        KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  KC_DEL, \
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______, \
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  KC_DEL, \
+        _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______, \
         _______, _______, _______, _______, _______, _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, _______, \
         _______, _______, _______, _______,          _______, _______,          KC_APP,  _______, _______, _______
     ),
@@ -154,20 +154,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
      * │       │       │       │       │       │       │       │       │       │       │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │ BTN 1 │ M. Up │ BTN 2 │       │       │       │       │       │       │       │       │
+     * │       │       │ BTN 1 │ M. Up │ BTN 2 │ Wh. U │       │       │       │       │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │ M. L  │ M. Dn │ M. R  │       │       │       │       │       │       │       │       │
+     * │       │       │ M. L  │ M. Dn │ M. R  │ Wh. D │       │       │       │       │       │       │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     * │       │ ACL 0 │ ACL 1 │ ACL 2 │       │       │       │       │       │       │       │       │
+     * │       │       │ ACL 0 │ ACL 1 │ ACL 2 │       │       │       │       │       │       │       │
      * ├───────┼───────┼───────┼───────┼───────┴───────┼───────┴───────┼───────┼───────┼───────┼───────┤
      * │       │       │       │       │               │               │ Wh. L │ Wh. D │ Wh. U │ Wh. R │
      * └───────┴───────┴───────┴───────┴───────────────┴───────────────┴───────┴───────┴───────┴───────┘
      */
     [_MOUSE] = LAYOUT_preonic_2x2u(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-        XXXXXXX, KC_BTN1, KC_MS_U, KC_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-        XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-        XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+        XXXXXXX, XXXXXXX, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+        XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+        XXXXXXX, XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
         _______, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX,          KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R
     ),
 
