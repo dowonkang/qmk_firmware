@@ -28,11 +28,11 @@ enum preonic_layers {
     // clang-format on
 };
 
-enum preonic_keycodes {
-    // clang-format off
-    GRAVESC = SAFE_RANGE
-    // clang-format on
-};
+// enum preonic_keycodes {
+//     // clang-format off
+//     GRAVESC = SAFE_RANGE
+//     // clang-format on
+// };
 
 // Let's dance
 typedef struct {
@@ -61,8 +61,9 @@ void extra_reset(qk_tap_dance_state_t *state, void *user_data);
 #define RAISE MO(_RAISE)
 #define LOW_SPC LT(_LOWER, KC_SPACE)
 #define RSE_SPC LT(_RAISE, KC_SPACE)
-#define CTL_LFT RCTL_T(KC_LEFT)
+#define CTL_LFT CTL_T(KC_LEFT)
 #define ALT_DN ALT_T(KC_DOWN)
+#define GUI_UP GUI_T(KC_UP)
 #define CTL_RGT RCTL_T(KC_RIGHT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -70,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Base
      * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
-     * │ Esc   │   1   │   2   │   3   │   4   │   5   │   6   │   7   │   8   │   9   │   0   │   `   │
+     * │ `     │   1   │   2   │   3   │   4   │   5   │   6   │   7   │   8   │   9   │   0   │   \   │
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │ Tab   │   Q   │   W   │   E   │   R   │   T   │   Y   │   U   │   I   │   O   │   P   │BackSpc│
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
@@ -82,11 +83,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * └───────┴───────┴───────┴───────┴───────┴───────────────┴───────┴───────┴───────┴───────┴───────┘
      */
     [_BASE] = LAYOUT_preonic_1x2uC(
-        GRAVESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS, \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
         KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT, \
-        DANCE,   KC_LGUI, KC_LALT, KC_LCTL, LOWER,       KC_SPC,       RAISE,   CTL_LFT, ALT_DN,  KC_UP,   CTL_RGT
+        DANCE,   KC_LGUI, KC_LALT, KC_LCTL, LOWER,       KC_SPC,       RAISE,   CTL_LFT, ALT_DN,  GUI_UP,  CTL_RGT
     ),
 
     /* Lower
@@ -196,34 +197,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format on
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case GRAVESC: {
-            static uint8_t kc;
-            static uint8_t mods;
-            static bool    is_alt_pressed;
-            static bool    is_gui_pressed;
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) {
+//         case GRAVESC: {
+//             static uint8_t kc;
+//             static uint8_t mods;
+//             static bool    is_alt_pressed;
+//             static bool    is_gui_pressed;
 
-            if (record->event.pressed) {
-                mods           = get_mods();
-                is_alt_pressed = mods & MOD_MASK_ALT;
-                is_gui_pressed = mods & MOD_MASK_GUI;
+//             if (record->event.pressed) {
+//                 mods           = get_mods();
+//                 is_alt_pressed = mods & MOD_MASK_ALT;
+//                 is_gui_pressed = mods & MOD_MASK_GUI;
 
-                if (is_alt_pressed || is_gui_pressed) {
-                    kc = KC_GRAVE;
-                } else {
-                    kc = KC_ESCAPE;
-                }
+//                 if (is_alt_pressed || is_gui_pressed) {
+//                     kc = KC_GRAVE;
+//                 } else {
+//                     kc = KC_ESCAPE;
+//                 }
 
-                register_code(kc);
-            } else {
-                unregister_code(kc);
-            }
-            break;
-        }
-    }
-    return true;
-}
+//                 register_code(kc);
+//             } else {
+//                 unregister_code(kc);
+//             }
+//             break;
+//         }
+//     }
+//     return true;
+// }
 
 uint32_t layer_state_set_user(uint32_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
 
