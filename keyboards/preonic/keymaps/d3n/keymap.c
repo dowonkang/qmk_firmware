@@ -27,37 +27,13 @@ enum preonic_layers {
     // clang-format on
 };
 
-// Let's dance
-typedef struct {
-    bool is_press_action;
-    int  state;
-} tap;
-
-enum {
-    // clang-format off
-    SINGLE_TAP = 1,
-    SINGLE_HOLD = 2,
-    DOUBLE_TAP = 3,
-    DOUBLE_HOLD = 4
-    // clang-format on
-};
-
-enum { TAP_DANCE = 0 };
-
-int cur_dance(qk_tap_dance_state_t *state);
-
-void extra_finished(qk_tap_dance_state_t *state, void *user_data);
-void extra_reset(qk_tap_dance_state_t *state, void *user_data);
-
-#define DANCE TD(TAP_DANCE)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define LOW_SPC LT(_LOWER, KC_SPACE)
-#define RSE_SPC LT(_RAISE, KC_SPACE)
 #define CTL_LFT CTL_T(KC_LEFT)
 #define ALT_DN ALT_T(KC_DOWN)
 #define GUI_UP GUI_T(KC_UP)
 #define CTL_RGT RCTL_T(KC_RIGHT)
+#define NUMPAD TG(_NUMPAD)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
@@ -72,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      * │ Shift │   Z   │   X   │   C   │   V   │   B   │   N   │   M   │   ,   │   .   │   /   │Ent/Sft│
      * ├───────┼───────┼───────┼───────┼───────┼───────┴───────┼───────┼───────┼───────┼───────┼───────┤
-     * │ DANCE │ Super │  Alt  │ Ctrl  │ Lower │     Space     │ Raise │ Left  │ Down  │  Up   │  Right│
+     * │ NUMPAD│ Super │  Alt  │ Ctrl  │ Lower │     Space     │ Raise │ Left  │ Down  │  Up   │  Right│
      * └───────┴───────┴───────┴───────┴───────┴───────────────┴───────┴───────┴───────┴───────┴───────┘
      */
     [_BASE] = LAYOUT_preonic_1x2uC(
@@ -80,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
         KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT, \
-        DANCE,   KC_LGUI, KC_LALT, KC_LCTL, LOWER,       KC_SPC,       RAISE,   CTL_LFT, ALT_DN,  GUI_UP,  CTL_RGT
+        NUMPAD,  KC_LGUI, KC_LALT, KC_LCTL, LOWER,       KC_SPC,       RAISE,   CTL_LFT, ALT_DN,  GUI_UP,  CTL_RGT
     ),
 
     /* Lower
@@ -169,7 +145,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format on
 };
 
-uint32_t layer_state_set_user(uint32_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
+// Track NumLock state
+static bool numlock_state = false;
+
+void keyboard_post_init_user(void) { numlock_state = host_keyboard_led_state().num_lock; }
+
+bool led_update_user(led_t led_state) {
+    numlock_state = led_state.num_lock;
+    return true;
+}
+
+uint32_t layer_state_set_user(uint32_t state) {
+    if (layer_state_is(_NUMPAD) && !numlock_state) {
+        tap_code(KC_NUMLOCK);
+    } else if (numlock_state) {
+        tap_code(KC_NUMLOCK);
+    }
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
 
 bool     muse_mode      = false;
 uint8_t  last_muse_note = 0;
@@ -193,29 +186,19 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
         }
     } else {
-        if (clockwise) {
-            tap_code(KC_PGDN);
+        if (IS_LAYER_ON(_RAISE)) {
+            if (clockwise) {
+                tap_code(KC_MS_WH_DOWN);
+            } else {
+                tap_code(KC_MS_WH_UP);
+            }
         } else {
-            tap_code(KC_PGUP);
+            if (clockwise) {
+                tap_code(KC_AUDIO_VOL_UP);
+            } else {
+                tap_code(KC_AUDIO_VOL_DOWN);
+            }
         }
-    }
-}
-
-void dip_switch_update_user(uint8_t index, bool active) {
-    switch (index) {
-        case 0:
-            if (active) {
-                layer_on(_ADJUST);
-            } else {
-                layer_off(_ADJUST);
-            }
-            break;
-        case 1:
-            if (active) {
-                muse_mode = true;
-            } else {
-                muse_mode = false;
-            }
     }
 }
 
@@ -239,84 +222,3 @@ void matrix_scan_user(void) {
     }
 #endif
 }
-
-bool music_mask_user(uint16_t keycode) {
-    switch (keycode) {
-        case RSE_SPC:
-        case LOW_SPC:
-            return false;
-        default:
-            return true;
-    }
-}
-
-// Track NumLock state
-static bool numlock_state = false;
-
-void keyboard_post_init_user(void) { numlock_state = host_keyboard_led_state().num_lock; }
-
-bool led_update_user(led_t led_state) {
-    numlock_state = led_state.num_lock;
-    return true;
-}
-
-// Let's DANCE!
-int cur_dance(qk_tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (!state->pressed) {
-            return SINGLE_TAP;
-        } else {
-            return SINGLE_HOLD;
-        }
-    } else if (state->count == 2) {
-        if (!state->pressed) {
-            return DOUBLE_TAP;
-        } else {
-            return DOUBLE_HOLD;
-        }
-    }
-    return 5;
-}
-
-static tap extra_state = {.is_press_action = true, .state = 0};
-
-void extra_finished(qk_tap_dance_state_t *state, void *user_data) {
-    extra_state.state = cur_dance(state);
-    switch (extra_state.state) {
-        case SINGLE_TAP:
-            if (layer_state_is(_NUMPAD)) {
-                if (numlock_state) {
-                    tap_code(KC_NUMLOCK);
-                }
-                layer_off(_NUMPAD);
-            } else {
-                if (!numlock_state) {
-                    tap_code(KC_NUMLOCK);
-                }
-                layer_move(_NUMPAD);
-            }
-            break;
-        case SINGLE_HOLD:
-            break;
-        case DOUBLE_TAP:
-            break;
-        case DOUBLE_HOLD:
-            break;
-    }
-}
-
-void extra_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (extra_state.state) {
-        case SINGLE_TAP:
-            break;
-        case SINGLE_HOLD:
-            break;
-        case DOUBLE_TAP:
-            break;
-        case DOUBLE_HOLD:
-            break;
-    }
-    extra_state.state = 0;
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {[TAP_DANCE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, extra_finished, extra_reset)};

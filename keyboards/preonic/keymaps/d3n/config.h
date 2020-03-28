@@ -38,3 +38,5 @@
 
 #define TAPPING_TERM 175
 #define PERMISSIVE_HOLD
+
+#define TAP_CODE_DELAY 10
