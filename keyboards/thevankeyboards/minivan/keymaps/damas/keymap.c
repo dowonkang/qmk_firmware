@@ -34,18 +34,20 @@ enum {
 };
 enum {
     // clang-format off
-    TD_FN = 0
+    TD_LOWER = 0,
+    TD_RAISE
     // clang-format on
 };
 
 int  cur_dance(qk_tap_dance_state_t *state);
-void td_fn_finished(qk_tap_dance_state_t *state, void *user_data);
-void td_fn_reset(qk_tap_dance_state_t *state, void *user_data);
+void td_lower_finished(qk_tap_dance_state_t *state, void *user_data);
+void td_lower_reset(qk_tap_dance_state_t *state, void *user_data);
+void td_raise_finished(qk_tap_dance_state_t *state, void *user_data);
+void td_raise_reset(qk_tap_dance_state_t *state, void *user_data);
 
 // Shortcuts
-#define LOWER MO(_LOWER)
-#define RSE_SPC LT(_RAISE, KC_SPACE)
-#define FN TD(TD_FN)
+#define LOWER TD(TD_LOWER)
+#define RAISE TD(TD_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
@@ -64,23 +66,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ESC,     KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT,          LOWER,            KC_SPC,           FN,      KC_RALT, KC_RGUI, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT,          LOWER,            KC_SPC,           RAISE,      KC_RALT, KC_RGUI, KC_RCTL
     ),
     [_LOWER] = LAYOUT_arrow(
         /* LOWER
          * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬─────────┐
          * │   `   │   1   │   2   │   3   │   4   │   5   │   6   │   7   │   8   │   9   │   0   │  Delete │
          * ├───────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬────────┤
-         * │        │       │ Back  │ Stop  │Refresh│Forward│   '   │   -   │   =   │       │       │        │
+         * │        │   6   │   7   │   8   │   9   │   0   │   '   │   -   │   [   │   ]   │       │        │
          * ├────────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬───────┤
-         * │         │       │ Mute  │ Vol - │ Vol + │ Play  │   \   │   [   │   ]   │       │       │       │
+         * │         │       │ Mute  │ Vol - │ Vol + │ Play  │   \   │   =   │       │       │       │       │
          * ├────────┬┴───────┼───────┴┬──────┴───────┴───┬───┴───────┴───┬───┴───────┼───────┼───────┼───────┤
          * │        │        │        │                  │               │           │       │       │       │
          * └────────┴────────┴────────┴──────────────────┴───────────────┴───────────┴───────┴───────┴───────┘
          */
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
-        _______, _______, KC_WBAK, KC_WSTP, KC_WREF, KC_WFWD, KC_QUOT, KC_MINS, KC_EQL,  _______, _______, _______,
-        _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, KC_BSLS, KC_LBRC, KC_RBRC, _______, _______, _______,
+        _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
+        _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, KC_BSLS, KC_EQL,  _______, _______, _______, _______,
         _______, _______, _______,          _______,          _______,          _______, _______, _______, _______
     ),
     [_RAISE] = LAYOUT_arrow(
@@ -90,32 +92,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          * ├───────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬────────┤
          * │        │   6   │   7   │   8   │   9   │   0   │       │       │       │       │       │        │
          * ├────────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬───────┤
-         * │         │       │       │       │       │       │       │       │       │ Home  │  Up   │   End │
+         * │         │       │       │       │       │       │       │       │       │       │  Up   │       │
          * ├────────┬┴───────┼───────┴┬──────┴───────┴───┬───┴───────┴───┬───┴───────┼───────┼───────┼───────┤
          * │        │        │        │                  │               │           │ Left  │ Down  │ Right │
          * └────────┴────────┴────────┴──────────────────┴───────────────┴───────────┴───────┴───────┴───────┘
          */
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
         _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_UP,   KC_END,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_UP,   _______,
         _______, _______, _______,          _______,          _______,          _______, KC_LEFT, KC_DOWN, KC_RIGHT
     ),
     [_FUNCTION] = LAYOUT_arrow(
         /* FUNCTION
          * ┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬─────────┐
-         * │       │  F1   │  F2   │  F3   │  F4   │       │       │       │       │ NumLk │  Ins  │    Del  │
+         * │       │  F1   │  F2   │  F3   │  F4   │       │       │ PrtSc │ ScrLk │ Pause │ NumLk │         │
          * ├───────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬────────┤
-         * │ CapsLk │  F5   │  F6   │  F7   │  F8   │       │       │       │       │ PrtSc │ ScrLk │  Pause │
+         * │ CapsLk │  F5   │  F6   │  F7   │  F8   │       │       │  Ins  │ Home  │ PgUp  │       │        │
          * ├────────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬──────┴┬───────┤
-         * │         │  F9   │  F10  │  F11  │  F12  │       │       │       │       │ W.Bak │ PgUp  │ W.Fwd │
+         * │         │  F9   │  F10  │  F11  │  F12  │       │       │  Del  │  End  │ PgDn  │       │       │
          * ├────────┬┴───────┼───────┴┬──────┴───────┴───┬───┴───────┴───┬───┴───────┼───────┼───────┼───────┤
-         * │        │        │        │                  │               │           │ Home  │ PgDn  │   End │
+         * │        │        │        │                  │               │           │       │       │       │
          * └────────┴────────┴────────┴──────────────────┴───────────────┴───────────┴───────┴───────┴───────┘
          */
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_INS,  KC_DEL,
-        KC_CAPS, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR, KC_SLCK, KC_PAUS,
-        _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WBAK, KC_PGUP, KC_WFWD,
-        _______, _______, _______,          XXXXXXX,          XXXXXXX,          _______, KC_HOME, KC_PGDN, KC_END
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX, XXXXXXX, KC_PSCR, KC_SLCK, KC_PAUS, KC_NLCK, _______,
+        KC_CAPS, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX, XXXXXXX, KC_INS,  KC_HOME, KC_PGUP, XXXXXXX, _______,
+        _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, KC_DEL,  KC_END,  KC_PGDN, XXXXXXX, _______,
+        _______, _______, _______,          _______,          XXXXXXX,          _______, _______, _______, _______
     ),
     [_ADJUST] = LAYOUT_arrow(
         /* ADJUST
@@ -270,11 +272,45 @@ int cur_dance(qk_tap_dance_state_t *state) {
     return 5;
 }
 
-static tap fn_state = {.is_press_action = true, .state = 0};
+static tap lower_state = {.is_press_action = true, .state = 0};
 
-void td_fn_finished(qk_tap_dance_state_t *state, void *user_data) {
-    fn_state.state = cur_dance(state);
-    switch (fn_state.state) {
+void td_lower_finished(qk_tap_dance_state_t *state, void *user_data) {
+    lower_state.state = cur_dance(state);
+    switch (lower_state.state) {
+        case SINGLE_TAP:
+            break;
+        case SINGLE_HOLD:
+            layer_move(_LOWER);
+            break;
+        case DOUBLE_TAP:
+            break;
+        case DOUBLE_HOLD:
+            layer_move(_FUNCTION);
+            break;
+    }
+}
+
+void td_lower_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (lower_state.state) {
+        case SINGLE_TAP:
+            break;
+        case SINGLE_HOLD:
+            layer_off(_RAISE);
+            break;
+        case DOUBLE_TAP:
+            break;
+        case DOUBLE_HOLD:
+            layer_off(_FUNCTION);
+            break;
+    }
+    lower_state.state = 0;
+}
+
+static tap raise_state = {.is_press_action = true, .state = 0};
+
+void td_raise_finished(qk_tap_dance_state_t *state, void *user_data) {
+    raise_state.state = cur_dance(state);
+    switch (raise_state.state) {
         case SINGLE_TAP:
             tap_code(KC_APPLICATION);
             break;
@@ -289,8 +325,8 @@ void td_fn_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void td_fn_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (fn_state.state) {
+void td_raise_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (raise_state.state) {
         case SINGLE_TAP:
             break;
         case SINGLE_HOLD:
@@ -302,11 +338,12 @@ void td_fn_reset(qk_tap_dance_state_t *state, void *user_data) {
             layer_off(_FUNCTION);
             break;
     }
-    fn_state.state = 0;
+    raise_state.state = 0;
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     // clang-format off
-    [TD_FN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_fn_finished, td_fn_reset)
+    [TD_LOWER] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_lower_finished, td_lower_reset),
+    [TD_RAISE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_raise_finished, td_raise_reset)
     // clang-format on
 };
