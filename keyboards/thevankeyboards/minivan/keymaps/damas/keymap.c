@@ -295,7 +295,7 @@ void td_lower_reset(qk_tap_dance_state_t *state, void *user_data) {
         case SINGLE_TAP:
             break;
         case SINGLE_HOLD:
-            layer_off(_RAISE);
+            layer_off(_LOWER);
             break;
         case DOUBLE_TAP:
             break;
