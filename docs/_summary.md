@@ -55,6 +55,7 @@
   * Simple Keycodes
     * [Full List](keycodes.md)
     * [Basic Keycodes](keycodes_basic.md)
+    * [Language-Specific Keycodes](reference_keymap_extras.md)
     * [Modifier Keys](feature_advanced_keycodes.md)
     * [Quantum Keycodes](quantum_keycodes.md)
 
@@ -110,10 +111,12 @@
     * [Velocikey](feature_velocikey.md)
 
 * Developing QMK
+  * [PR Checklist](pr_checklist.md)
   * Breaking Changes
     * [Overview](breaking_changes.md)
     * [My Pull Request Was Flagged](breaking_changes_instructions.md)
     * History
+      * [2020 May 30](ChangeLog/20200530.md)
       * [2020 Feb 29](ChangeLog/20200229.md)
       * [2019 Aug 30](ChangeLog/20190830.md)
 
@@ -143,6 +146,7 @@
 
   * Hardware Platform Development
     * Arm/ChibiOS
+      * [Selecting an MCU](platformdev_selecting_arm_mcu.md)
       * [Early initialization](platformdev_chibios_earlyinit.md)
 
   * QMK Reference
