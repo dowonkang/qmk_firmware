@@ -5,8 +5,7 @@ extern keymap_config_t keymap_config;
 enum damas_layers {
     // clang-format off
     _BASE,
-    _LOWER,
-    _RAISE,
+    _SYMBOLS,
     _NUMPAD,
     _NUMPADLOCK,
     _FUNCTION,
@@ -18,11 +17,20 @@ enum damas_layers {
 // Shortcuts
 #define FN_TAB LT(_FUNCTION, KC_TAB)
 #define FN_ESC LT(_NUMPAD, KC_ESCAPE)
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
+#define BASE TO(_BASE)
+#define SYMBOLS MO(_SYMBOLS)
 #define LOCK_NP TO(_NUMPADLOCK)
 #define LOCK_FN TO(_FUNCTIONLOCK)
-#define UNLOCK TO(_BASE)
+#define CTL_A LCTL(KC_A)
+#define CTL_S LCTL(KC_S)
+#define CTL_D LCTL(KC_D)
+#define CTL_F LCTL(KC_F)
+#define CTL_G LCTL(KC_G)
+#define CTL_Z LCTL(KC_Z)
+#define CTL_X LCTL(KC_X)
+#define CTL_C LCTL(KC_C)
+#define CTL_V LCTL(KC_V)
+#define CTL_B LCTL(KC_B)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
@@ -30,18 +38,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
         FN_ESC , KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT ,
         KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
-        KC_LCTL, KC_LGUI, KC_LALT,          LOWER           ,          KC_SPC          , RAISE  , KC_RALT, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT,          SYMBOLS         ,          KC_SPC          , KC_RALT, KC_RGUI, KC_RCTL
     ),
-    [_LOWER] = LAYOUT(
+    [_SYMBOLS] = LAYOUT(
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_CAPS, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
-        _______, KC_MINS, KC_PLUS, KC_COMM, KC_DOT , KC_ENT , KC_BSLS, KC_EQL , _______, _______, _______, _______,
-        _______, _______, _______,          _______         ,          _______         , _______, _______, _______
-    ),
-    [_RAISE] = LAYOUT(
-        KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_CAPS, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+        KC_CAPS, CTL_A  , CTL_S  , CTL_D  , CTL_F  , CTL_G  , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
+        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  , KC_BSLS, KC_EQL , _______, _______, _______, _______,
         _______, _______, _______,          _______         ,          _______         , _______, _______, _______
     ),
     [_NUMPAD] = LAYOUT(
@@ -57,16 +59,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,          KC_SPC          ,          KC_P0           , KC_P0  , KC_PDOT, UNLOCK
     ),
     [_FUNCTION] = LAYOUT(
-        _______, KC_WBAK, KC_HOME, KC_PGUP, KC_PSCR, KC_SLCK, KC_PAUS, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
-        _______, KC_WFWD, KC_END , KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
+        _______, KC_WBAK, KC_HOME, KC_PGUP, KC_VOLU, KC_PSCR, XXXXXXX, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
+        _______, KC_WFWD, KC_END , KC_PGDN, KC_VOLD, KC_SLCK, XXXXXXX, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
+        _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_PAUS, XXXXXXX, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
         _______, _______, _______,          KC_SPC          ,          _______         , XXXXXXX, _______, LOCK_FN
     ),
     [_FUNCTIONLOCK] = LAYOUT(
-        _______, KC_WBAK, KC_HOME, KC_PGUP, KC_PSCR, KC_SLCK, KC_PAUS, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
-        _______, KC_WFWD, KC_END , KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
-        _______, _______, _______,          KC_SPC          ,          _______         , XXXXXXX, _______, UNLOCK
+        _______, KC_WBAK, KC_HOME, KC_PGUP, KC_VOLU, KC_PSCR, XXXXXXX, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
+        _______, KC_WFWD, KC_END , KC_PGDN, KC_VOLD, KC_SLCK, XXXXXXX, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
+        _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_PAUS, XXXXXXX, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
+        _______, _______, _______,          KC_SPC          ,          _______         , XXXXXXX, _______, BASE
     ),
     [_ADJUST] = LAYOUT(
         RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -101,18 +103,18 @@ uint32_t layer_state_set_user(uint32_t state) {
         led0r = 255;
         led0b = 255;
     }
-    if (layer_state_cmp(state, _LOWER)) {
+    if (layer_state_cmp(state, _SYMBOLS)) {
         led0b = 255;
     }
-    if (layer_state_cmp(state, _FUNCTION)) {
+    if (layer_state_cmp(state, _NUMPAD)) {
         led0g = 255;
     }
-    if (layer_state_cmp(state, _RAISE)) {
+    if (layer_state_cmp(state, _FUNCTION)) {
         led0r = 255;
     }
     setrgb(led0r, led0g, led0b, (LED_TYPE *)&led[0]);
 #endif  // RGBLIGHT_ENABLE
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _NUMPAD, _SYMBOLS, _ADJUST);
 }
 
 bool led_update_user(led_t led_state) {
