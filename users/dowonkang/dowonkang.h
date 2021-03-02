@@ -5,7 +5,7 @@
 // This should be already included in QMK_KEYBOARD_H.
 // But VS Code doesn't handle it very well.
 // Including it again provides way better IntelliSense experience.
-// #include "quantum.h"
+#include "quantum.h"
 
 enum userspace_layers {
     // clang-format off
