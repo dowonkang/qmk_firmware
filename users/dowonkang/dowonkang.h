@@ -31,6 +31,10 @@ enum userspace_keycodes {
 #define FN_TAB LT(_FUNCTION, KC_TAB)
 
 // Ctrl Combos
+#define CTL_A LCTL(KC_A)
+#define CTL_S LCTL(KC_S)
+#define CTL_D LCTL(KC_D)
+#define CTL_F LCTL(KC_F)
 #define CTL_G LCTL(KC_G)
 #define CTL_Z LCTL(KC_Z)
 #define CTL_X LCTL(KC_X)
