@@ -19,7 +19,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_BASE] = LAYOUT_reviung41(
         FN_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,          KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
-        U_ESC  , HOME_A , HOME_S , HOME_D , HOME_F , KC_G   ,          KC_H   , HOME_J , HOME_K , HOME_L , HOME_SC, KC_ENT,
+        U_ESC  , HOME_A , HOME_S , HOME_D , HOME_F , KC_G   ,          KC_H   , HOME_J , HOME_K , HOME_L , HOME_SC, KC_ENT ,
         KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,          KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
                                    KC_LALT, LOWER  ,          KC_SPC ,          RAISE  , KC_LGUI
     ),
