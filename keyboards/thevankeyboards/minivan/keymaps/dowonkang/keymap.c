@@ -10,20 +10,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_BASE] = LAYOUT(
         FN_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
-        U_ESC  , HOME_A , HOME_S , HOME_D , HOME_F , KC_G   , KC_H   , HOME_J , HOME_K , HOME_L , HOME_SC, KC_ENT ,
+        U_ESC  , KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT ,
         KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
         KC_LCTL, KC_LGUI, KC_LALT,           LOWER          ,          RSE_SPC         , KC_RALT, KC_RGUI, KC_RCTL
     ),
     [_LOWER] = LAYOUT(
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, CTL_G  , KC_QUOT, LOW_J  , LOW_K  , LOW_L  , _______, _______,
+        KC_ESC , CTL_A  , CTL_S  , CTL_D  , CTL_F  , CTL_G  , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
         _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  , KC_BSLS, KC_EQL , _______, _______, _______, _______,
         _______, _______, _______,          _______         ,          KC_SPC          , _______, _______, _______
     ),
     [_RAISE] = LAYOUT(
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, CTL_G  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
-        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  , KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
+        KC_ESC , _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
+        _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
         _______, _______, _______,          _______         ,          _______         , _______, _______, _______
     ),
     [_FUNCTION] = LAYOUT(
