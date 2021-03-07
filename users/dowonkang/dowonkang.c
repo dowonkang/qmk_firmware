@@ -11,6 +11,7 @@ __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint16_t u_esc_timer;
+    static uint16_t u_space_timer;
     switch (keycode) {
         case U_ESC:
             if (record->event.pressed) {
@@ -28,8 +29,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
+        case U_SPACE:
+            if (record->event.pressed) {
+                u_space_timer = timer_read();
+                layer_on(_CTRL);
+            } else {
+                layer_off(_CTRL);
+                if (timer_elapsed(u_space_timer) < TAPPING_TERM) {
+                    tap_code(KC_SPACE);
+                }
+            }
+            return false;
         default:
-            return process_record_keymap(keycode, record);
+            break;
     }
     return process_record_keymap(keycode, record);
 }
