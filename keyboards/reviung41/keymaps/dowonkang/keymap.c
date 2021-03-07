@@ -21,20 +21,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FN_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,          KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
         U_ESC  , HOME_A , HOME_S , HOME_D , HOME_F , KC_G   ,          KC_H   , HOME_J , HOME_K , HOME_L , HOME_SC, KC_ENT ,
         KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,          KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
-                                   KC_LALT, LOWER  ,          KC_SPC ,          RAISE  , KC_LGUI
+                                   KC_LALT, LOWER  ,          U_SPACE,          RAISE  , KC_LGUI
     ),
 
     [_LOWER] = LAYOUT_reviung41(
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,          KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, CTL_G  ,          KC_QUOT, LOW_J  , LOW_K  , LOW_L  , _______, _______,
-        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  ,          KC_BSLS, KC_EQL , _______, _______, _______, _______,
-                                   _______, _______,          _______,          _______, _______
+        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX,          KC_QUOT, LOW_J  , LOW_K  , LOW_L  , _______, _______,
+        _______, KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX,          KC_BSLS, KC_EQL , _______, _______, _______, _______,
+                                   _______, _______,          KC_SPC ,          _______, _______
     ),
 
     [_RAISE] = LAYOUT_reviung41(
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,          KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, CTL_G  ,          KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
-        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  ,          KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
+        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX,          KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
+        _______, KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX,          KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
                                    _______, _______,          _______,          _______, KC_APP
     ),
 
@@ -49,13 +49,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_HOME, KC_UP  , KC_END , KC_PGUP, XXXXXXX,          KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS, _______,
         _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, XXXXXXX,          KC_TAB , KC_P4  , KC_P5  , KC_P6  , KC_PPLS, KC_PENT,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_PAST, KC_P1  , KC_P2  , KC_P3  , KC_PSLS, _______,
-                                   _______, KC_LGUI,          _______,          KC_P0  , KC_PDOT
+                                   _______, KC_LGUI,          KC_SPC ,          KC_P0  , KC_PDOT
+    ),
+
+    [_CTRL] = LAYOUT_reviung41(
+        // clang-format off
+        _______, CTRL_Q , CTRL_W , CTRL_E , CTRL_R , CTRL_T ,          _______, _______, _______, _______, _______, _______,
+        _______, CTRL_A , CTRL_S , CTRL_D , CTRL_F , CTRL_G ,          _______, _______, _______, _______, _______, _______,
+        _______, CTRL_Z , CTRL_X , CTRL_C , CTRL_V , CTRL_B ,          _______, _______, _______, _______, _______, _______,
+                                   _______, _______,          _______,          _______, _______
+        // clang-format on
     ),
 
     [_ADJUST] = LAYOUT_reviung41(
-        RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_INS , KC_F1  , KC_F2  , KC_F3  , KC_F4  , XXXXXXX,
-        KC_CLCK, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD, RGB_TOG,          KC_CAPS, KC_F5  , KC_F6  , KC_F7  , KC_F8  , XXXXXXX,
-        XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD, RGB_RMOD,CMB_TOG,          XXXXXXX, KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX,
+        RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_CLCK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                    _______, _______,          XXXXXXX,          _______, _______
     ),
     // clang-format on

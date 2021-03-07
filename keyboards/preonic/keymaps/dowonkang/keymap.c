@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
         KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
         _______, KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
-        _______, _______, _______, _______, _______,      KC_SPC,      _______, _______, _______, _______, _______
+        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
         // clang-format on
         ),
 
@@ -73,9 +73,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_CTRL] = LAYOUT_preonic_1x2uC(
         // clang-format off
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, CTL_Q  , CTL_W  , CTL_E  , CTL_R  , CTRL_T , _______, _______, _______, _______, _______, _______,
-        _______, CTL_A  , CTL_S  , CTL_D  , CTL_F  , CTL_G  , _______, _______, _______, _______, _______, _______,
-        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  , _______, _______, _______, _______, _______, _______,
+        _______, CTRL_Q , CTRL_W , CTRL_E , CTRL_R , CTRL_T , _______, _______, _______, _______, _______, _______,
+        _______, CTRL_A , CTRL_S , CTRL_D , CTRL_F , CTRL_G , _______, _______, _______, _______, _______, _______,
+        _______, CTRL_Z , CTRL_X , CTRL_C , CTRL_V , CTRL_B , _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
         // clang-format on
         ),
