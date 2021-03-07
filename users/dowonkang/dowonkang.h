@@ -14,6 +14,7 @@ enum userspace_layers {
     _RAISE,
     _NUMPAD,
     _FUNCTION,
+    _CTRL,
     _ADJUST
     // clang-format on
 };
@@ -21,6 +22,7 @@ enum userspace_layers {
 enum userspace_keycodes {
     // clang-format off
     U_ESC = SAFE_RANGE,
+    U_SPACE,
     NEW_SAFE_RANGE
     // clang-format on
 };
@@ -31,6 +33,11 @@ enum userspace_keycodes {
 #define FN_TAB LT(_FUNCTION, KC_TAB)
 
 // Ctrl Combos
+#define CTL_Q LCTL(KC_Q)
+#define CTL_W LCTL(KC_W)
+#define CTL_E LCTL(KC_E)
+#define CTL_R LCTL(KC_R)
+#define CTRL_T LCTL(KC_T)
 #define CTL_A LCTL(KC_A)
 #define CTL_S LCTL(KC_S)
 #define CTL_D LCTL(KC_D)

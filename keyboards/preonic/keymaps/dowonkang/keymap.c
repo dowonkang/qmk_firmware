@@ -24,9 +24,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // clang-format off
         KC_MUTE, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
         FN_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
-        U_ESC  , KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT ,
+        U_ESC  , HOME_A , HOME_S , HOME_D , HOME_F , KC_G   , KC_H   , HOME_J , HOME_K , HOME_L , HOME_SC, KC_ENT ,
         KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
-        KC_LCTL, FN     , KC_LGUI, KC_LALT, LOWER  ,     KC_SPC,       RAISE  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL
+        KC_LCTL, FN     , KC_LGUI, KC_LALT, LOWER  ,     U_SPACE,      RAISE  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL
         // clang-format on
         ),
 
@@ -34,9 +34,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // clang-format off
         _______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , CTL_A  , CTL_S  , CTL_D  , CTL_F  , CTL_G  , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
-        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  , KC_BSLS, KC_EQL , _______, _______, _______, _______,
-        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
+        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX, KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
+        _______, KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_EQL , _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,      KC_SPC,      _______, _______, _______, _______, _______
         // clang-format on
         ),
 
@@ -44,9 +44,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // clang-format off
         _______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , CTL_A  , CTL_S  , CTL_D  , CTL_F  , CTL_G  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
-        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  , KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
-        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
+        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
+        _______, KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
+        _______, _______, _______, _______, _______,      KC_SPC,      _______, _______, _______, _______, _______
         // clang-format on
         ),
 
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_WBAK, KC_HOME, KC_WFWD, KC_WREF, KC_VOLU, KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_INS ,
         KC_ESC , XXXXXXX, KC_END , KC_WSCH, KC_WSTP, KC_VOLD, KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
         _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_WHOM, KC_MUTE, KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
-        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
+        _______, _______, _______, _______, _______,      KC_SPC,      _______, _______, _______, _______, _______
         // clang-format on
         ),
 
@@ -66,7 +66,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_HOME, KC_UP  , KC_END , KC_PGUP, XXXXXXX, KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS, _______,
         _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, XXXXXXX, KC_TAB , KC_P4  , KC_P5  , KC_P6  , KC_PPLS, KC_PENT,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PAST, KC_P1  , KC_P2  , KC_P3  , KC_PSLS, _______,
-        _______, _______, _______, _______, _______,     _______,      KC_P0  , XXXXXXX, KC_PDOT, XXXXXXX, _______
+        _______, _______, _______, _______, _______,      KC_SPC,      KC_P0  , XXXXXXX, KC_PDOT, XXXXXXX, _______
+        // clang-format on
+        ),
+
+    [_CTRL] = LAYOUT_preonic_1x2uC(
+        // clang-format off
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, CTL_Q  , CTL_W  , CTL_E  , CTL_R  , CTRL_T , _______, _______, _______, _______, _______, _______,
+        _______, CTL_A  , CTL_S  , CTL_D  , CTL_F  , CTL_G  , _______, _______, _______, _______, _______, _______,
+        _______, CTL_Z  , CTL_X  , CTL_C  , CTL_V  , CTL_B  , _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
         // clang-format on
         ),
 
@@ -158,4 +168,21 @@ bool music_mask_user(uint16_t keycode) {
         default:
             return true;
     }
+}
+
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode)
+    {
+    case U_SPACE:
+        if (record->event.pressed) {
+            layer_on(_CTRL);
+        } else {
+            layer_off(_CTRL);
+        }
+        break;
+
+    default:
+        break;
+    }
+    return true;
 }
