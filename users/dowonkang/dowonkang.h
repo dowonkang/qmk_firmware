@@ -23,6 +23,9 @@ enum userspace_keycodes {
     // clang-format off
     U_ESC = SAFE_RANGE,
     U_SPACE,
+    LOW_ESC,
+    NUM_TAB,
+    FN_BSPC,
     NEW_SAFE_RANGE
     // clang-format on
 };
@@ -30,7 +33,11 @@ enum userspace_keycodes {
 // Layer Keys
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+
+// Layer/Mod Taps
 #define FN_TAB LT(_FUNCTION, KC_TAB)
+#define RSE_ENT LT(_RAISE, KC_ENTER)
+#define CTL_SPC LCTL_T(KC_SPACE)
 
 // Ctrl Combos
 #define CTRL_Q LCTL(KC_Q)
@@ -55,13 +62,33 @@ enum userspace_keycodes {
 #define HOME_D LSFT_T(KC_D)
 #define HOME_F LCTL_T(KC_F)
 
+#define H_A LGUI_T(KC_A)
+#define H_S LALT_T(KC_S)
+#define H_D LSFT_T(KC_D)
+#define H_F LCTL_T(KC_F)
+#define H_X ALGR_T(KC_X)
+
 // Right-hand home row mods
 #define HOME_J RCTL_T(KC_J)
 #define HOME_K RSFT_T(KC_K)
 #define HOME_L LALT_T(KC_L)
 #define HOME_SC RGUI_T(KC_SCLN)
 
+#define H_J RCTL_T(KC_J)
+#define H_K RSFT_T(KC_K)
+#define H_L LALT_T(KC_L)
+#define H_SCLN RGUI_T(KC_SCLN)
+#define H_DOT ALGR_T(KC_DOT)
+
 // Right-hand home row mods in LOWER layer
 #define LOW_J RCTL_T(KC_MINS)
 #define LOW_K RSFT_T(KC_LBRC)
 #define LOW_L LALT_T(KC_RBRC)
+
+// Web navigation key combos
+#define W_BACK LALT(KC_LEFT)
+#define W_FWD LALT(KC_RIGHT)
+#define W_REF LCTL(KC_R)
+#define WEB_BCK LALT(KC_LEFT)
+#define WEB_FWD LALT(KC_RIGHT)
+#define WEB_REF LCTL(KC_R)
