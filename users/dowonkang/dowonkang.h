@@ -92,3 +92,27 @@ enum userspace_keycodes {
 #define WEB_BCK LALT(KC_LEFT)
 #define WEB_FWD LALT(KC_RIGHT)
 #define WEB_REF LCTL(KC_R)
+
+// clang-format off
+// Number row
+#define ____NUM_LEFT_____ KC_1, KC_2, KC_3, KC_4, KC_5
+#define ____NUM_RIGHT____ KC_6, KC_7, KC_8, KC_9, KC_0
+
+// QWERTY
+#define ____QWERTY_L1____ KC_Q, KC_W, KC_E   , KC_R  , KC_T
+#define ____QWERTY_L2____ H_A , H_S , H_D    , H_F   , KC_G
+#define ____QWERTY_L3____ KC_Z, H_X , KC_C   , KC_V  , KC_B
+#define ____QWERTY_R1____ KC_Y, KC_U, KC_I   , KC_O  , KC_P
+#define ____QWERTY_R2____ KC_H, KC_J, KC_K   , KC_L  , KC_SCLN
+#define ____QWERTY_R3____ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH
+
+// Home-Mods
+#define ___HOME_MOD_L2___ LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F)  , KC_G
+#define ___HOME_MOD_L3___ KC_Z        , ALGR_T(KC_X), KC_C        , KC_V          , KC_B
+#define ___HOME_MOD_R2___ KC_H        , RCTL_T(KC_J), RSFT_T(KC_K), LALT_T(KC_L)  , RGUI_T(KC_SCLN)
+#define ___HOME_MOD_R3___ KC_N        , KC_M        , KC_COMM     , ALGR_T(KC_DOT), KC_SLSH
+
+// VI-style navigation
+#define __VI_NAV_ROW_2___ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX
+#define __VI_NAV_ROW_3___ KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX
+// clang-format on
