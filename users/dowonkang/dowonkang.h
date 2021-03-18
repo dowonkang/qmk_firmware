@@ -14,105 +14,176 @@ enum userspace_layers {
     _RAISE,
     _NUMPAD,
     _FUNCTION,
-    _CTRL,
+    _MOUSE,
     _ADJUST
     // clang-format on
 };
 
 enum userspace_keycodes {
     // clang-format off
-    U_ESC = SAFE_RANGE,
-    U_SPACE,
-    LOW_ESC,
-    NUM_TAB,
-    FN_BSPC,
+    LOW_ESC = SAFE_RANGE,
+    RSE_SPC,
     NEW_SAFE_RANGE
     // clang-format on
 };
 
-// Layer Keys
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
+// clang-format off
+// Layers
+#define LOW     MO(_LOWER)
+#define RSE     MO(_RAISE)
+#define NUM     MO(_NUMPAD)
+#define FN      MO(_FUNCTION)
+#define MOUS    MO(_MOUSE)
+#define ADJ     MO(_ADJUST)
 
-// Layer/Mod Taps
-#define FN_TAB LT(_FUNCTION, KC_TAB)
-#define RSE_ENT LT(_RAISE, KC_ENTER)
-#define CTL_SPC LCTL_T(KC_SPACE)
+// Layer-tap keys
+#define FN_TAB  LT(_FUNCTION, KC_TAB)
+#define FN_DEL  LT(_FUNCTION, KC_DELETE)
+#define FN_BSPC LT(_FUNCTION, KC_BSPACE)
+#define NUM_TAB LT(_NUMPAD, KC_TAB)
+#define NUM_ESC LT(_NUMPAD, KC_ESCAPE)
+#define MS_ESC  LT(_MOUSE, KC_ESCAPE)
+#define MS_DEL  LT(_MOUSE, KC_DELETE)
 
-// Ctrl Combos
-#define CTRL_Q LCTL(KC_Q)
-#define CTRL_W LCTL(KC_W)
-#define CTRL_E LCTL(KC_E)
-#define CTRL_R LCTL(KC_R)
-#define CTRL_T LCTL(KC_T)
-#define CTRL_A LCTL(KC_A)
-#define CTRL_S LCTL(KC_S)
-#define CTRL_D LCTL(KC_D)
-#define CTRL_F LCTL(KC_F)
-#define CTRL_G LCTL(KC_G)
-#define CTRL_Z LCTL(KC_Z)
-#define CTRL_X LCTL(KC_X)
-#define CTRL_C LCTL(KC_C)
-#define CTRL_V LCTL(KC_V)
-#define CTRL_B LCTL(KC_B)
+// Mod-tap keys
+#define CTL_SPC    LCTL_T(KC_SPACE)
+#define CTL_BSP LCTL_T(KC_BSPACE)
+#define SFT_ENT LSFT_T(KC_ENTER)
+
+// Left-most keys
+#define LTAB    FN_TAB
+#define LESC    MS_ESC
 
 // Left-hand home row mods
-#define HOME_A LGUI_T(KC_A)
-#define HOME_S LALT_T(KC_S)
-#define HOME_D LSFT_T(KC_D)
-#define HOME_F LCTL_T(KC_F)
-
-#define H_A LGUI_T(KC_A)
-#define H_S LALT_T(KC_S)
-#define H_D LSFT_T(KC_D)
-#define H_F LCTL_T(KC_F)
-#define H_X ALGR_T(KC_X)
+#define HMOD_A  LGUI_T(KC_A)
+#define HMOD_S  LALT_T(KC_S)
+#define HMOD_D  LSFT_T(KC_D)
+#define HMOD_F  LCTL_T(KC_F)
+#define HMOD_X  ALGR_T(KC_X)
 
 // Right-hand home row mods
-#define HOME_J RCTL_T(KC_J)
-#define HOME_K RSFT_T(KC_K)
-#define HOME_L LALT_T(KC_L)
-#define HOME_SC RGUI_T(KC_SCLN)
+#define HMOD_J  RCTL_T(KC_J)
+#define HMOD_K  RSFT_T(KC_K)
+#define HMOD_L  LALT_T(KC_L)
+#define HMOD_SC RGUI_T(KC_SCLN)
+#define HMOD_DT ALGR_T(KC_DOT)
 
-#define H_J RCTL_T(KC_J)
-#define H_K RSFT_T(KC_K)
-#define H_L LALT_T(KC_L)
-#define H_SCLN RGUI_T(KC_SCLN)
-#define H_DOT ALGR_T(KC_DOT)
+// LOWER layer home row mods
+#define LMOD_J  RCTL_T(KC_MINS)
+#define LMOD_K  RSFT_T(KC_LBRC)
+#define LMOD_L  LALT_T(KC_RBRC)
 
-// Right-hand home row mods in LOWER layer
-#define LOW_J RCTL_T(KC_MINS)
-#define LOW_K RSFT_T(KC_LBRC)
-#define LOW_L LALT_T(KC_RBRC)
+// Less than 4-letter shortcuts
+#define ____    KC_TRANSPARENT
+#define XXXX    KC_NO
+#define RSET    RESET
 
-// Web navigation key combos
-#define W_BACK LALT(KC_LEFT)
-#define W_FWD LALT(KC_RIGHT)
-#define W_REF LCTL(KC_R)
-#define WEB_BCK LALT(KC_LEFT)
-#define WEB_FWD LALT(KC_RIGHT)
-#define WEB_REF LCTL(KC_R)
+#define SPC     KC_SPACE
+#define BSPC    KC_BSPACE
+#define ENT     KC_ENTER
+#define ESC     KC_ESCAPE
+#define TAB     KC_TAB
+#define DEL     KC_DELETE
+#define INS     KC_INSERT
+#define MENU    KC_APP
 
-// clang-format off
+// Modifiers
+#define SFTL    KC_LSFT
+#define SFTR    KC_RSFT
+#define ALTG    KC_RALT
+
+#define GRV     KC_GRAVE
+
+// Numpad
+#define P0      KC_P0
+#define PDOT    KC_PDOT
+#define PENT    KC_PENT
+
+// Movements
+#define _UP_    KC_UP
+#define _DN_    KC_DOWN
+#define LEFT    KC_LEFT
+#define RGHT    KC_RGHT
+#define HOME    KC_HOME
+#define END     KC_END
+#define PGUP    KC_PGUP
+#define PGDN    KC_PGDN
+
+// Web navigations
+#define WBCK    LALT(KC_LEFT)
+#define WFWD    LALT(KC_RIGHT)
+#define WREF    LCTL(KC_R)
+
+// Media
+#define VOLU    KC_VOLU
+#define VOLD    KC_VOLD
+#define MUTE    KC_MUTE
+
+// Mouse
+#define BTN1    KC_MS_BTN1
+#define BTN2    KC_MS_BTN2
+#define BTN3    KC_MS_BTN3
+#define ACL0    KC_ACL0
+#define ACL1    KC_ACL1
+#define ACL2    KC_ACL2
+
+// XXXXXXX
+#define XXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+// _______
+#define ____________________________ _______, _______, _______, _______, _______
+
 // Number row
-#define ____NUM_LEFT_____ KC_1, KC_2, KC_3, KC_4, KC_5
-#define ____NUM_RIGHT____ KC_6, KC_7, KC_8, KC_9, KC_0
+     // XXXX, XXXX, XXXX, XXXX, XXXX
+#define ______NUMBER_12345__________ KC_1   , KC_2   , KC_3   , KC_4   , KC_5
+#define ______NUMBER_67890__________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
 
 // QWERTY
-#define ____QWERTY_L1____ KC_Q, KC_W, KC_E   , KC_R  , KC_T
-#define ____QWERTY_L2____ H_A , H_S , H_D    , H_F   , KC_G
-#define ____QWERTY_L3____ KC_Z, H_X , KC_C   , KC_V  , KC_B
-#define ____QWERTY_R1____ KC_Y, KC_U, KC_I   , KC_O  , KC_P
-#define ____QWERTY_R2____ KC_H, KC_J, KC_K   , KC_L  , KC_SCLN
-#define ____QWERTY_R3____ KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH
+#define ______QWERTY_LEFT1__________ KC_Q   , KC_W   , KC_E   , KC_R   , KC_T
+#define ______QWERTY_LEFT2__________ KC_A   , KC_S   , KC_D   , KC_F   , KC_G
+#define ______QWERTY_LEFT3__________ KC_Z   , KC_X   , KC_C   , KC_V   , KC_B
+#define ______QWERTY_RIGHT1_________ KC_Y   , KC_U   , KC_I   , KC_O   , KC_P
+#define ______QWERTY_RIGHT2_________ KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN
+#define ______QWERTY_RIGHT3_________ KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH
 
 // Home-Mods
-#define ___HOME_MOD_L2___ LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F)  , KC_G
-#define ___HOME_MOD_L3___ KC_Z        , ALGR_T(KC_X), KC_C        , KC_V          , KC_B
-#define ___HOME_MOD_R2___ KC_H        , RCTL_T(KC_J), RSFT_T(KC_K), LALT_T(KC_L)  , RGUI_T(KC_SCLN)
-#define ___HOME_MOD_R3___ KC_N        , KC_M        , KC_COMM     , ALGR_T(KC_DOT), KC_SLSH
+#define ______HOME_MOD_LEFT2________ HMOD_A , HMOD_S , HMOD_D , HMOD_F , KC_G
+#define ______HOME_MOD_LEFT3________ KC_Z   , HMOD_X , KC_C   , KC_V   , KC_B
+#define ______HOME_MOD_RIGHT2_______ KC_H   , HMOD_J , HMOD_K , HMOD_L , HMOD_SC
+#define ______HOME_MOD_RIGHT3_______ KC_N   , KC_M   , KC_COMM, HMOD_DT, KC_SLSH
+
+// Mods rows
+#define ______MOD_LEFT_2______       KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL
+#define ______MOD_LEFT_2____________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX
+#define ______MOD_LEFT_2_GRAVE______ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_GRV
+#define ______MOD_LEFT_3____________ KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX
+#define ______MOD_RIGHT_2___________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI
+#define ______MOD_RIGHT_3___________ XXXXXXX, XXXXXXX, XXXXXXX, KC_RALT, KC_APP
+
+// Symbol rows
+#define ______SYMBOL_2______________ KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______
+#define ______SYMBOL_2_MOD__________ KC_QUOT, LMOD_J , LMOD_K , LMOD_L , _______
+#define ______SYMBOL_3______________ KC_BSLS, KC_EQL , _______, _______, _______
 
 // VI-style navigation
-#define __VI_NAV_ROW_2___ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX
-#define __VI_NAV_ROW_3___ KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX
+#define ______VI_NAV_ROW_2__________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX
+#define ______VI_NAV_ROW_3__________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX
+
+// Mouse
+#define ______MOUSE_VI_ROW_2________ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX
+#define ______MOUSE_VI_ROW_3________ KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX
+
+// Function rows
+#define ______FN_RIGHT_1____________ KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4
+#define ______FN_RIGHT_2____________ KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8
+#define ______FN_RIGHT_3____________ KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12
+
+// Media
+#define ______MEDIA_____             KC_MPRV, KC_MPLY, KC_MNXT
+#define ______MEDIA_________________ XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX
+
+// Numpad
+#define ______NUMPAD_RIGHT_1________ KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS
+#define ______NUMPAD_RIGHT_2________ KC_CAPS, KC_P4  , KC_P5  , KC_P6  , KC_PPLS
+#define ______NUMPAD_RIGHT_3________ KC_PAST, KC_P1  , KC_P2  , KC_P3  , KC_PSLS
 // clang-format on

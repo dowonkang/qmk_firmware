@@ -17,78 +17,71 @@
 #include "dowonkang.h"
 #include "muse.h"
 
-#define FN MO(_FUNCTION)
+#define LTH LOW_ESC
+#define LTL NUM_TAB
+#define LTR CTL_BSP
+#define RTH RSE_SPC
+#define RTL SFT_ENT
+#define RTR FN_DEL
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE] = LAYOUT_preonic_1x2uC(
-        // clang-format off
-        KC_MUTE, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        FN_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
-        U_ESC  , HOME_A , HOME_S , HOME_D , HOME_F , KC_G   , KC_H   , HOME_J , HOME_K , HOME_L , HOME_SC, KC_ENT ,
-        KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
-        KC_LCTL, FN     , KC_LGUI, KC_LALT, LOWER  ,     U_SPACE,      RAISE  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL
-        // clang-format on
-        ),
+    // clang-format off
+    [_BASE] = LAYOUT_wrapper(
+        MUTE, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        ______QWERTY_LEFT1__________, XXXX, XXXX, ______QWERTY_RIGHT1_________,
+        ______HOME_MOD_LEFT2________, XXXX, XXXX, ______HOME_MOD_RIGHT2_______,
+        ______HOME_MOD_LEFT3________, XXXX, XXXX, ______HOME_MOD_RIGHT3_______,
+        XXXX, XXXX, LTL , LTH , LTR ,    XXXX,    RTL , RTH , RTR , XXXX, XXXX
+    ),
 
-    [_LOWER] = LAYOUT_preonic_1x2uC(
-        // clang-format off
-        _______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX, KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
-        _______, KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS, KC_EQL , _______, _______, _______, _______,
-        _______, _______, _______, _______, _______,      KC_SPC,      _______, _______, _______, _______, _______
-        // clang-format on
-        ),
+    [_LOWER] = LAYOUT_wrapper(
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        ______NUMBER_12345__________, XXXX, XXXX, ______NUMBER_67890__________,
+        ______MOD_LEFT_2_GRAVE______, XXXX, XXXX, ______SYMBOL_2_MOD__________,
+        ______MOD_LEFT_3____________, XXXX, XXXX, ______SYMBOL_3______________,
+        XXXX, XXXX, XXXX, XXXX, XXXX,    XXXX,    ENT , SPC , DEL , XXXX, XXXX
+    ),
 
-    [_RAISE] = LAYOUT_preonic_1x2uC(
-        // clang-format off
-        _______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL ,
-        KC_ESC , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX, _______,
-        _______, KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX, _______,
-        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
-        // clang-format on
-        ),
+    [_RAISE] = LAYOUT_wrapper(
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        ______NUMBER_12345__________, XXXX, XXXX, ______NUMBER_67890__________,
+        ______MOD_LEFT_2_GRAVE______, XXXX, XXXX, ______VI_NAV_ROW_2__________,
+        ______MOD_LEFT_3____________, XXXX, XXXX, ______VI_NAV_ROW_3__________,
+        XXXX, XXXX, TAB , ESC , BSPC,    XXXX,    XXXX, XXXX, XXXX, XXXX, XXXX
+    ),
 
-    [_FUNCTION] = LAYOUT_preonic_1x2uC(
-        // clang-format off
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR, KC_SLCK, KC_PAUS, XXXXXXX, _______,
-        _______, KC_WBAK, KC_HOME, KC_WFWD, KC_WREF, KC_VOLU, KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_INS ,
-        KC_ESC , XXXXXXX, KC_END , KC_WSCH, KC_WSTP, KC_VOLD, KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
-        _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_WHOM, KC_MUTE, KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
-        _______, _______, _______, _______, _______,      KC_SPC,      _______, _______, _______, _______, _______
-        // clang-format on
-        ),
+    [_FUNCTION] = LAYOUT_wrapper(
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        RSET, ______MEDIA_____, VOLU, XXXX, XXXX, ______FN_RIGHT_1____________,
+        ______MOD_LEFT_2______, VOLD, XXXX, XXXX, ______FN_RIGHT_2____________,
+        MENU, ALTG, XXXX, XXXX, MUTE, XXXX, XXXX, ______FN_RIGHT_3____________,
+        XXXX, XXXX, ADJ , MOUS, XXXX,    XXXX,    XXXX, XXXX, XXXX, XXXX, XXXX
+    ),
 
-    [_NUMPAD] = LAYOUT_preonic_1x2uC(
-        // clang-format off
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NLCK, KC_PSLS, KC_PAST, XXXXXXX, _______,
-        _______, KC_HOME, KC_UP  , KC_END , KC_PGUP, XXXXXXX, KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS, _______,
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, XXXXXXX, KC_TAB , KC_P4  , KC_P5  , KC_P6  , KC_PPLS, KC_PENT,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PAST, KC_P1  , KC_P2  , KC_P3  , KC_PSLS, _______,
-        _______, _______, _______, _______, _______,      KC_SPC,      KC_P0  , XXXXXXX, KC_PDOT, XXXXXXX, _______
-        // clang-format on
-        ),
+    [_NUMPAD] = LAYOUT_wrapper(
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        TAB , WBCK, _UP_, WFWD, HOME, XXXX, XXXX, ______NUMPAD_RIGHT_1________,
+        ESC , LEFT, _DN_, RGHT, END , XXXX, XXXX, ______NUMPAD_RIGHT_2________,
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX, XXXX, ______NUMPAD_RIGHT_3________,
+        XXXX, XXXX, XXXX, XXXX, XXXX,    XXXX,    PENT, P0  , PDOT, XXXX, XXXX
+    ),
 
-    [_CTRL] = LAYOUT_preonic_1x2uC(
-        // clang-format off
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, CTRL_Q , CTRL_W , CTRL_E , CTRL_R , CTRL_T , _______, _______, _______, _______, _______, _______,
-        _______, CTRL_A , CTRL_S , CTRL_D , CTRL_F , CTRL_G , _______, _______, _______, _______, _______, _______,
-        _______, CTRL_Z , CTRL_X , CTRL_C , CTRL_V , CTRL_B , _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______
-        // clang-format on
-        ),
+    [_MOUSE] = LAYOUT_wrapper(
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX, XXXX, XXXX, ACL0, ACL1, ACL2, XXXX,
+        ______MOD_LEFT_2____________, XXXX, XXXX, ______MOUSE_VI_ROW_2________,
+        ______MOD_LEFT_3____________, XXXX, XXXX, ______MOUSE_VI_ROW_3________,
+        XXXX, XXXX, XXXX, XXXX, XXXX,    XXXX,    BTN2, BTN1, BTN3, XXXX, XXXX
+    ),
 
-    [_ADJUST] = LAYOUT_preonic_1x2uC(
-        // clang-format off
-        RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DEBUG  ,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TERM_ON, TERM_OFF,XXXXXXX, XXXXXXX, XXXXXXX,
+    [_ADJUST] = LAYOUT_wrapper(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DEBUG  ,
+        RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TERM_ON, TERM_OFF,XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, MU_MOD , AU_ON  , AU_OFF,  AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, MUV_DE , MUV_IN , MU_ON  , MU_OFF,  MI_ON  , MI_OFF , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-        // clang-format on
-        )
+    )
+    // clang-format on
 };
 
 bool muse_mode = false;
@@ -158,31 +151,4 @@ void matrix_scan_user(void) {
         }
     }
 #endif
-}
-
-bool music_mask_user(uint16_t keycode) {
-    switch (keycode) {
-        case RAISE:
-        case LOWER:
-            return false;
-        default:
-            return true;
-    }
-}
-
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode)
-    {
-    case U_SPACE:
-        if (record->event.pressed) {
-            layer_on(_CTRL);
-        } else {
-            layer_off(_CTRL);
-        }
-        break;
-
-    default:
-        break;
-    }
-    return true;
 }

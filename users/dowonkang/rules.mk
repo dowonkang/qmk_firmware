@@ -1,3 +1,6 @@
+MOUSEKEY_ENABLE = yes # Mouse keys
+EXTRAKEY_ENABLE = yes # Audio control and System control
+
 SRC += dowonkang.c
 
 # Enable link time optimization to reduce firmware size
