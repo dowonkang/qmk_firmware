@@ -44,3 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+
+// Layout wrapper
+#define LAYOUT_wrapper(...) LAYOUT_split_3x6_3(__VA_ARGS__)
