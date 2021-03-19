@@ -16,57 +16,59 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include QMK_KEYBOARD_H
+#include "dowonkang.h"
+
+#define LTH LOW_ESC
+#define LTL NUM_TAB
+#define LTR CTL_BSP
+#define RTH RSE_SPC
+#define RTL SFT_ENT
+#define RTR FN_DEL
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   MO(1),  KC_SPC,     KC_ENT,   MO(2), KC_RALT
-                                      //`--------------------------'  `--------------------------'
+    // clang-format off
+    [_BASE] = LAYOUT_wrapper(
+        LTAB, ______QWERTY_LEFT1__________,  ______QWERTY_RIGHT1_________, BSPC,
+        LESC, ______HOME_MOD_LEFT2________,  ______HOME_MOD_RIGHT2_______, ENT ,
+        SFTL, ______HOME_MOD_LEFT3________,  ______HOME_MOD_RIGHT3_______, SFTR,
+                          LTL , LTH , LTR ,  RTL , RTH , RTR
+    ),
 
-  ),
+    [_LOWER] = LAYOUT_wrapper(
+        TAB , ______NUMBER_12345__________,  ______NUMBER_67890__________, DEL ,
+        ESC , ______MOD_LEFT_2_GRAVE______,  ______SYMBOL_2_MOD__________, ____,
+        ____, ______MOD_LEFT_3____________,  ______SYMBOL_3______________, ____,
+                          XXXX, ____, XXXX,  ENT , SPC , DEL
+    ),
 
-  [1] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT,   MO(3), KC_RALT
-                                      //`--------------------------'  `--------------------------'
-  ),
+    [_RAISE] = LAYOUT_wrapper(
+        TAB , ______NUMBER_12345__________,  ______NUMBER_67890__________, DEL ,
+        ESC , ______MOD_LEFT_2_GRAVE______,  ______VI_NAV_ROW_2__________, ____,
+        ____, ______MOD_LEFT_3____________,  ______VI_NAV_ROW_3__________, ____,
+                          TAB , ESC , BSPC,  XXXX, ____, XXXX
+    ),
 
-  [2] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   MO(3),  KC_SPC,     KC_ENT, _______, KC_RALT
-                                      //`--------------------------'  `--------------------------'
-  ),
+    [_NUMPAD] = LAYOUT_wrapper(
+        ____, TAB , WBCK, _UP_, WFWD, HOME,  ______NUMPAD_RIGHT_1________, ____,
+        ____, ESC , LEFT, _DN_, RGHT, END ,  ______NUMPAD_RIGHT_2________, ____,
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX,  ______NUMPAD_RIGHT_3________, ____,
+                          ____, XXXX, XXXX,  PENT, P0  , PDOT
+    ),
 
-  [3] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        RESET, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_RALT
-                                      //`--------------------------'  `--------------------------'
-  )
+    [_FUNCTION] = LAYOUT_wrapper(
+        RSET, RSET, ______MEDIA_____, VOLU,  ______FN_RIGHT_1____________, INS ,
+        ____, ______MOD_LEFT_2______, VOLD,  ______FN_RIGHT_2____________, ____,
+        ____, MENU, ALTG, XXXX, XXXX, MUTE,  ______FN_RIGHT_3____________, ____,
+                          XXXX, MOUS, XXXX,  XXXX, XXXX, ____
+    ),
+
+    [_MOUSE] = LAYOUT_wrapper(
+        XXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX,  XXXX, ACL0, ACL1, ACL2, XXXX, ____,
+        XXXX, ______MOD_LEFT_2____________,  ______MOUSE_VI_ROW_2________, ____,
+        ____, ______MOD_LEFT_3____________,  ______MOUSE_VI_ROW_3________, ____,
+                          XXXX, XXXX, XXXX,  BTN2, BTN1,  BTN3
+    ),
+    // clang-format on
 };
 
 #ifdef OLED_DRIVER_ENABLE
@@ -165,10 +167,10 @@ void oled_task_user(void) {
     }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    set_keylog(keycode, record);
-  }
-  return true;
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        set_keylog(keycode, record);
+    }
+    return true;
 }
 #endif // OLED_DRIVER_ENABLE
