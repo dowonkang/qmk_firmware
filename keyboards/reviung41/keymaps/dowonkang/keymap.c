@@ -15,47 +15,51 @@
  */
 #include "dowonkang.h"
 
-#define LTH LOW_ESC
-#define LTL NUM_TAB
-#define RTH RSE
-#define RTR MS_DEL
+// clang-format off
+#define LTAB FN_TAB
+#define LESC NUM_ESC
+#define LTH  LOW
+#define LTL  NUM_TAB
+#define RTH  RSE
+#define RTR  MS_DEL
 #define CSPC CTL_SPC
+// clang-format on
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_BASE] = LAYOUT_wrapper(
-        LTAB, ______QWERTY_LEFT1__________,       ______QWERTY_RIGHT1_________, BSPC,
-        LESC, ______HOME_MOD_LEFT2________,       ______HOME_MOD_RIGHT2_______, ENT ,
-        SFTL, ______HOME_MOD_LEFT3________,       ______HOME_MOD_RIGHT3_______, SFTR,
+        LTAB, ______BASE_LEFT_1___________,       ______BASE_RIGHT_1__________, BSPC,
+        LESC, ______BASE_LEFT_2___________,       ______BASE_RIGHT_2__________, ENT ,
+        SFTL, ______BASE_LEFT_3___________,       ______BASE_RIGHT_3__________, SFTR,
                                 LTL , LTH , CSPC, RTH , RTR
     ),
 
     [_LOWER] = LAYOUT_wrapper(
-        TAB , ______NUMBER_12345__________,       ______NUMBER_67890__________, DEL ,
-        ESC , ______MOD_LEFT_2_GRAVE______,       ______SYMBOL_2_MOD__________, ____,
-        ____, ______MOD_LEFT_3____________,       ______SYMBOL_3______________, ____,
-                                XXXX, XXXX, SPC , ____, ____
+        TAB , ______LOWER_LEFT_1__________,       ______LOWER_RIGHT_1_________, DEL ,
+        ESC , ______LOWER_LEFT_2__________,       ______LOWER_RIGHT_2_________, ____,
+        ____, ______LOWER_LEFT_3__________,       ______LOWER_RIGHT_3_________, ____,
+                                XXXX, ____, SPC , ____, ____
     ),
 
     [_RAISE] = LAYOUT_wrapper(
-        TAB , ______NUMBER_12345__________,       ______NUMBER_67890__________, DEL ,
-        ESC , ______MOD_LEFT_2_GRAVE______,       ______VI_NAV_ROW_2__________, ____,
-        ____, ______MOD_LEFT_3____________,       ______VI_NAV_ROW_3__________, ____,
-                                TAB , ESC , SPC , XXXX, XXXX
+        TAB , ______RAISE_LEFT_1__________,       ______RAISE_RIGHT_1_________, DEL ,
+        ESC , ______RAISE_LEFT_2__________,       ______RAISE_RIGHT_2_________, ____,
+        ____, ______RAISE_LEFT_3__________,       ______RAISE_RIGHT_3_________, ____,
+                                ____, ____, SPC , ____, XXXX
     ),
 
     [_NUMPAD] = LAYOUT_wrapper(
-        ____, TAB , WBCK, _UP_, WFWD, HOME,       ______NUMPAD_RIGHT_1________, ____,
-        ____, ESC , LEFT, _DN_, RGHT, END ,       ______NUMPAD_RIGHT_2________, ____,
-        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX,       ______NUMPAD_RIGHT_3________, ____,
-                                XXXX, XXXX, SPC , P0  , PDOT
+        ____, ______NUMPAD_LEFT_1_________,       ______NUMPAD_RIGHT_1________, ____,
+        ____, ______NUMPAD_LEFT_2_________,       ______NUMPAD_RIGHT_2________, ____,
+        ____, ______NUMPAD_LEFT_3_________,       ______NUMPAD_RIGHT_3________, ____,
+                                ____, ____, SPC , P0  , PDOT
     ),
 
     [_FUNCTION] = LAYOUT_wrapper(
-        RSET, XXXX, ______MEDIA_____, VOLU,       ______FN_RIGHT_1____________, INS ,
-        ____, ______MOD_LEFT_2______, VOLD,       ______FN_RIGHT_2____________, ____,
-        ____, MENU, ALTG, XXXX, XXXX, MUTE,       ______FN_RIGHT_3____________, ____,
-                                TAB , ESC , SPC , XXXX, XXXX
+        ____, ______FN_LEFT_1_____________,       ______FN_RIGHT_1____________, ____,
+        ____, ______FN_LEFT_2_____________,       ______FN_RIGHT_2____________, ____,
+        ____, ______FN_LEFT_3_____________,       ______FN_RIGHT_3____________, ____,
+                                ____, ____, SPC , ____, ____
     ),
 
     [_MOUSE] = LAYOUT_wrapper(

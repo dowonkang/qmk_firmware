@@ -50,10 +50,6 @@ enum userspace_keycodes {
 #define CTL_BSP LCTL_T(KC_BSPACE)
 #define SFT_ENT LSFT_T(KC_ENTER)
 
-// Left-most keys
-#define LTAB    FN_TAB
-#define LESC    MS_ESC
-
 // Left-hand home row mods
 #define HMOD_A  LGUI_T(KC_A)
 #define HMOD_S  LALT_T(KC_S)
@@ -173,17 +169,53 @@ enum userspace_keycodes {
 #define ______MOUSE_VI_ROW_2________ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX
 #define ______MOUSE_VI_ROW_3________ KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX
 
-// Function rows
-#define ______FN_RIGHT_1____________ KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4
-#define ______FN_RIGHT_2____________ KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8
-#define ______FN_RIGHT_3____________ KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12
-
 // Media
 #define ______MEDIA_____             KC_MPRV, KC_MPLY, KC_MNXT
 #define ______MEDIA_________________ XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX
 
+// Base
+#define ______BASE_LEFT_1___________ KC_Q   , KC_W   , KC_E   , KC_R   , KC_T
+#define ______BASE_LEFT_2___________ HMOD_A , HMOD_S , HMOD_D , HMOD_F , KC_G
+#define ______BASE_LEFT_3___________ KC_Z   , HMOD_X , KC_C   , KC_V   , KC_B
+
+#define ______BASE_RIGHT_1__________ KC_Y   , KC_U   , KC_I   , KC_O   , KC_P
+#define ______BASE_RIGHT_2__________ KC_H   , HMOD_J , HMOD_K , HMOD_L , HMOD_SC
+#define ______BASE_RIGHT_3__________ KC_N   , KC_M   , KC_COMM, HMOD_DT, KC_SLSH
+
+// Lower
+#define ______LOWER_LEFT_1__________ KC_1   , KC_2   , KC_3   , KC_4   , KC_5
+#define ______LOWER_LEFT_2__________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_GRV
+#define ______LOWER_LEFT_3__________ KC_DEL , KC_RALT, KC_APP , KC_TAB , KC_CAPS
+
+#define ______LOWER_RIGHT_1_________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
+#define ______LOWER_RIGHT_2_________ KC_QUOT, LMOD_J , LMOD_K , LMOD_L , KC_ENT
+#define ______LOWER_RIGHT_3_________ KC_BSLS, KC_EQL , _______, _______, KC_BSPC
+
+// Raise
+#define ______RAISE_LEFT_1__________ ______LOWER_LEFT_1__________
+#define ______RAISE_LEFT_2__________ ______LOWER_LEFT_2__________
+#define ______RAISE_LEFT_3__________ ______LOWER_LEFT_3__________
+
+#define ______RAISE_RIGHT_1_________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
+#define ______RAISE_RIGHT_2_________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_ENT
+#define ______RAISE_RIGHT_3_________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , KC_BSPC
+
 // Numpad
+#define ______NUMPAD_LEFT_1_________ XXXXXXX, WBCK   , KC_UP  , WFWD   , KC_HOME
+#define ______NUMPAD_LEFT_2_________ XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_END
+#define ______NUMPAD_LEFT_3_________ KC_INS , XXXXXXX, KC_APP , KC_TAB , KC_CAPS
+
 #define ______NUMPAD_RIGHT_1________ KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS
-#define ______NUMPAD_RIGHT_2________ KC_CAPS, KC_P4  , KC_P5  , KC_P6  , KC_PPLS
-#define ______NUMPAD_RIGHT_3________ KC_PAST, KC_P1  , KC_P2  , KC_P3  , KC_PSLS
+#define ______NUMPAD_RIGHT_2________ KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS
+#define ______NUMPAD_RIGHT_3________ KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT
+
+// Function
+#define ______FN_LEFT_1_____________ RSET, ______MEDIA_____, VOLU
+#define ______FN_LEFT_2_____________ ______MOD_LEFT_2______, VOLD
+#define ______FN_LEFT_3_____________ INS , ALTG, MENU, TAB , MUTE
+
+#define ______FN_RIGHT_1____________ KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4
+#define ______FN_RIGHT_2____________ KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8
+#define ______FN_RIGHT_3____________ KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12
+
 // clang-format on
