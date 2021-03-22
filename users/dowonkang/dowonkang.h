@@ -39,6 +39,7 @@ enum userspace_keycodes {
 // Layer-tap keys
 #define FN_TAB  LT(_FUNCTION, KC_TAB)
 #define FN_DEL  LT(_FUNCTION, KC_DELETE)
+#define FN_SPC LT(_FUNCTION, KC_SPACE)
 #define FN_BSPC LT(_FUNCTION, KC_BSPACE)
 #define NUM_TAB LT(_NUMPAD, KC_TAB)
 #define NUM_ESC LT(_NUMPAD, KC_ESCAPE)
