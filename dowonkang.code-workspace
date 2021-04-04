@@ -1,0 +1,91 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "name": "userspace/dowonkang",
+            "path": "users/dowonkang"
+        },
+        {
+            "name": "preonic/rev3:dowonkang",
+            "path": "keyboards/preonic/keymaps/dowonkang"
+        },
+        {
+            "name": "reviung41:dowonkang",
+            "path": "keyboards/reviung41/keymaps/dowonkang"
+        },
+        {
+            "name": "thevankeyboards/minivan:dowonkang",
+            "path": "keyboards/thevankeyboards/minivan/keymaps/dowonkang"
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "*.h": "c",
+            "*.c": "c",
+            "*.inc": "c",
+            "*.cpp": "cpp",
+            "*.hpp": "cpp",
+            "xstddef": "c",
+            "type_traits": "c",
+            "utility": "c",
+            "ranges": "c",
+            "*.tcc": "c"
+        },
+        "C_Cpp.default.includePath": [
+            "C:/Program Files/QMK_MSYS/mingw64/avr/include/**",
+            "C:/Program Files/QMK_MSYS/mingw64/lib/gcc/avr/8.4.0/include/**",
+            "C:/Program Files/QMK_MSYS/mingw64/lib/gcc/avr/8.4.0/include-fixed/**",
+            "C:/Program Files/QMK_MSYS/mingw64/arm-none-eabi/include/**",
+            "C:/Program Files/QMK_MSYS/mingw64/lib/gcc/arm-none-eabi/8.4.0/include/**",
+            "./**",
+            "./quantum/**",
+            "./tmk_core/common/**",
+            "./quantum/audio/**",
+            "./quantum/process_keycode/**",
+            "./drivers/avr/**",
+            "./lib/chibios/**",
+            "./lib/lufa/**"
+        ],
+        // "terminal.integrated.shell.windows": "C:\\Program Files\\QMK_MSYS\\msys2_shell.cmd",
+        // "terminal.integrated.env.windows": {
+        //     "MSYSTEM": "MINGW64",
+        //     "CHERE_INVOKING": "1"
+        // },
+        // "terminal.integrated.shellArgs.windows": [
+        //     "-defterm",
+        //     "-no-start",
+        //     "-mingw64"
+        // ],
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "Compile Preonic",
+                "group": "build",
+                "type": "shell",
+                "command": "qmk",
+                "args": [
+                    "compile",
+                    "-kb",
+                    "preonic/rev3",
+                    "-km",
+                    "dowonkang"
+                ],
+                "presentation": {
+                    "echo": true,
+                    "reveal": "always",
+                    "focus": false,
+                    "panel": "shared",
+                    "showReuseMessage": true,
+                    "clear": false
+                },
+                "problemMatcher": [
+                    "$gcc"
+                ]
+            }
+        ]
+    }
+}

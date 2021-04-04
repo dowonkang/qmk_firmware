@@ -47,8 +47,9 @@ enum userspace_keycodes {
 #define MS_DEL  LT(_MOUSE, KC_DELETE)
 
 // Mod-tap keys
-#define CTL_SPC    LCTL_T(KC_SPACE)
+#define CTL_SPC LCTL_T(KC_SPACE)
 #define CTL_BSP LCTL_T(KC_BSPACE)
+#define CTL_ESC LCTL_T(KC_ESCAPE)
 #define SFT_ENT LSFT_T(KC_ENTER)
 
 // Left-hand home row mods
