@@ -23,6 +23,7 @@ enum userspace_keycodes {
     // clang-format off
     LOW_ESC = SAFE_RANGE,
     RSE_SPC,
+    RSE_ENT,
     NEW_SAFE_RANGE
     // clang-format on
 };
@@ -51,6 +52,8 @@ enum userspace_keycodes {
 #define CTL_BSP LCTL_T(KC_BSPACE)
 #define CTL_ESC LCTL_T(KC_ESCAPE)
 #define SFT_ENT LSFT_T(KC_ENTER)
+#define SFT_SPC LSFT_T(KC_SPACE)
+#define ALT_DEL LALT_T(KC_DELETE)
 
 // Left-hand home row mods
 #define HMOD_A  LGUI_T(KC_A)
@@ -190,8 +193,8 @@ enum userspace_keycodes {
 #define ______LOWER_LEFT_3__________ KC_DEL , KC_RALT, KC_APP , KC_TAB , KC_CAPS
 
 #define ______LOWER_RIGHT_1_________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
-#define ______LOWER_RIGHT_2_________ KC_QUOT, LMOD_J , LMOD_K , LMOD_L , KC_ENT
-#define ______LOWER_RIGHT_3_________ KC_BSLS, KC_EQL , _______, _______, KC_BSPC
+#define ______LOWER_RIGHT_2_________ KC_QUOT, LMOD_J , LMOD_K , LMOD_L , _______
+#define ______LOWER_RIGHT_3_________ KC_BSLS, KC_EQL , _______, _______, _______
 
 // Raise
 #define ______RAISE_LEFT_1__________ ______LOWER_LEFT_1__________

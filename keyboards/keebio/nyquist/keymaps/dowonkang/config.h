@@ -14,3 +14,12 @@ LAYOUT_ortho_4x12( \
 )
 
 #define LAYOUT_wrapper(...) LAYOUT_ortho_36(__VA_ARGS__)
+
+// Combo
+#define COMBO_COUNT 12
+#define COMBO_TERM 30
+
+// Auto Shift
+#define NO_AUTO_SHIFT_ALPHA
+#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+#define AUTO_SHIFT_NO_SETUP

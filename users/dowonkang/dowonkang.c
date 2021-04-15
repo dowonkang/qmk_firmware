@@ -20,6 +20,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     static uint16_t low_esc_timer;
     static uint16_t rse_spc_timer;
+    static uint16_t rse_ent_timer;
 
     switch (keycode) {
         case LOW_ESC:
@@ -46,6 +47,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_off(_RAISE);
                 if (timer_elapsed(rse_spc_timer) < TAPPING_TERM) {
                     tap_code(KC_SPACE);
+                }
+            }
+            return false;
+
+        case RSE_ENT:
+            if (record->event.pressed) {
+                rse_ent_timer = timer_read();
+                layer_on(_RAISE);
+            } else {
+                layer_off(_RAISE);
+                if (timer_elapsed(rse_ent_timer) < TAPPING_TERM) {
+                    tap_code(KC_ENTER);
                 }
             }
             return false;
@@ -77,6 +90,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
         case LOW_ESC:
         case RSE_SPC:
+        case RSE_ENT:
             return TAPPING_TERM - 25;
 
         default:
