@@ -193,8 +193,8 @@ enum userspace_keycodes {
 #define ______LOWER_LEFT_3__________ KC_DEL , KC_RALT, KC_APP , KC_TAB , KC_CAPS
 
 #define ______LOWER_RIGHT_1_________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
-#define ______LOWER_RIGHT_2_________ KC_QUOT, LMOD_J , LMOD_K , LMOD_L , _______
-#define ______LOWER_RIGHT_3_________ KC_BSLS, KC_EQL , _______, _______, _______
+#define ______LOWER_RIGHT_2_________ KC_QUOT, LMOD_J , LMOD_K , LMOD_L , KC_COLN
+#define ______LOWER_RIGHT_3_________ KC_BSLS, KC_EQL , KC_LABK, KC_RABK, KC_QUES
 
 // Raise
 #define ______RAISE_LEFT_1__________ ______LOWER_LEFT_1__________
