@@ -1,5 +1,7 @@
-MOUSEKEY_ENABLE = yes # Mouse keys
-EXTRAKEY_ENABLE = yes # Audio control and System control
+MOUSEKEY_ENABLE = yes
+EXTRAKEY_ENABLE = yes
+AUTO_SHIFT_ENABLE = yes
+TAP_DANCE_ENABLE = yes
 
 SRC += dowonkang.c
 
