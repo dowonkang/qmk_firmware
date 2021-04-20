@@ -51,9 +51,11 @@ enum userspace_keycodes {
 #define CTL_SPC LCTL_T(KC_SPACE)
 #define CTL_BSP LCTL_T(KC_BSPACE)
 #define CTL_ESC LCTL_T(KC_ESCAPE)
+#define CTL_TAB LCTL_T(KC_TAB)
 #define SFT_ENT LSFT_T(KC_ENTER)
 #define SFT_SPC LSFT_T(KC_SPACE)
 #define ALT_DEL LALT_T(KC_DELETE)
+#define ALT_ESC LALT_T(KC_ESCAPE)
 
 // Left-hand home row mods
 #define HMOD_A  LGUI_T(KC_A)
@@ -140,12 +142,12 @@ enum userspace_keycodes {
 #define ______NUMBER_67890__________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
 
 // QWERTY
-#define ______QWERTY_LEFT1__________ KC_Q   , KC_W   , KC_E   , KC_R   , KC_T
-#define ______QWERTY_LEFT2__________ KC_A   , KC_S   , KC_D   , KC_F   , KC_G
-#define ______QWERTY_LEFT3__________ KC_Z   , KC_X   , KC_C   , KC_V   , KC_B
-#define ______QWERTY_RIGHT1_________ KC_Y   , KC_U   , KC_I   , KC_O   , KC_P
-#define ______QWERTY_RIGHT2_________ KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN
-#define ______QWERTY_RIGHT3_________ KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH
+#define ______QWERTY_LEFT_1_________ KC_Q   , KC_W   , KC_E   , KC_R   , KC_T
+#define ______QWERTY_LEFT_2_________ KC_A   , KC_S   , KC_D   , KC_F   , KC_G
+#define ______QWERTY_LEFT_3_________ KC_Z   , KC_X   , KC_C   , KC_V   , KC_B
+#define ______QWERTY_RIGHT_1________ KC_Y   , KC_U   , KC_I   , KC_O   , KC_P
+#define ______QWERTY_RIGHT_2________ KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN
+#define ______QWERTY_RIGHT_3________ KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH
 
 // Home-Mods
 #define ______HOME_MOD_LEFT2________ HMOD_A , HMOD_S , HMOD_D , HMOD_F , KC_G
@@ -201,9 +203,9 @@ enum userspace_keycodes {
 #define ______RAISE_LEFT_2__________ ______LOWER_LEFT_2__________
 #define ______RAISE_LEFT_3__________ ______LOWER_LEFT_3__________
 
-#define ______RAISE_RIGHT_1_________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
+#define ______RAISE_RIGHT_1_________ KC_6   , KC_7   , KC_8   , KC_DEL , KC_BSPC
 #define ______RAISE_RIGHT_2_________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_ENT
-#define ______RAISE_RIGHT_3_________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , KC_BSPC
+#define ______RAISE_RIGHT_3_________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , KC_RSFT
 
 // Numpad
 #define ______NUMPAD_LEFT_1_________ XXXXXXX, WBCK   , KC_UP  , WFWD   , KC_HOME

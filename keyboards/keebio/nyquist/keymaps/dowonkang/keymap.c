@@ -1,21 +1,42 @@
 #include "dowonkang.h"
 
+// clang-format off
 #define LTH LOW
-// #define LTL NUM_TAB
-#define LTL ALT_DEL
-#define LTR CTL_ESC
-#define RTH RSE_ENT
-#define RTL SFT_SPC
+#define LTL ALT_ESC
+#define LTR CTL_TAB
+#define RTH RSE
+#define RTL CTL_SPC
 #define RTR FN_BSPC
 
-#undef ______BASE_LEFT_2___________
-#define ______BASE_LEFT_2___________ ______QWERTY_LEFT2__________
-#undef ______BASE_LEFT_3___________
-#define ______BASE_LEFT_3___________ ______QWERTY_LEFT3__________
-#undef ______BASE_RIGHT_2__________
-#define ______BASE_RIGHT_2__________ ______QWERTY_RIGHT2_________
-#undef ______BASE_RIGHT_3__________
-#define ______BASE_RIGHT_3__________ ______QWERTY_RIGHT3_________
+// Mod-taps
+#define MT_A LSFT_T(KC_A)
+#define MT_S LGUI_T(KC_S)
+#define MT_D LALT_T(KC_D)
+#define MT_F LCTL_T(KC_F)
+#define MT_C RALT_T(KC_C)
+#define MT_J RCTL_T(KC_J)
+#define MT_K LALT_T(KC_K)
+#define MT_L RGUI_T(KC_L)
+#define MT_SCLN RSFT_T(KC_SCLN)
+#define MT_COMM RALT_T(KC_COMM)
+
+#undef  ______BASE_LEFT_2___________
+#define ______BASE_LEFT_2___________ MT_A, MT_S, MT_D, MT_F, KC_G
+#undef  ______BASE_LEFT_3___________
+#define ______BASE_LEFT_3___________ KC_Z, KC_X, MT_C, KC_V, KC_B
+#undef  ______BASE_RIGHT_2__________
+#define ______BASE_RIGHT_2__________ KC_H, MT_J, MT_K, MT_L, MT_SCLN
+#undef  ______BASE_RIGHT_3__________
+#define ______BASE_RIGHT_3__________ KC_N, KC_M, MT_COMM, KC_DOT, KC_SLSH
+#undef  ______LOWER_LEFT_2__________
+#define ______LOWER_LEFT_2__________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_GRV
+#undef  ______LOWER_LEFT_3__________
+#define ______LOWER_LEFT_3__________ KC_CAPS, KC_APP, KC_RALT, XXXX, XXXX
+#undef  ______RAISE_LEFT_2__________
+#define ______RAISE_LEFT_2__________ ______LOWER_LEFT_2__________
+#undef  ______RAISE_LEFT_3__________
+#define ______RAISE_LEFT_3__________ ______LOWER_LEFT_3__________
+// clang-format on
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
@@ -56,47 +77,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format on
 };
 
-// Combo
-enum combos {
-    // clang-format off
-    CB_TAB,
-    CB_GRV,
-    CB_LSFT,
-    CB_LCTL,
-    CB_LALT,
-    CB_LGUI,
-    CB_RSFT,
-    CB_RCTL,
-    CB_RALT,
-    CB_RGUI,
-    CB_HAEN
-    // clang-format on
-};
-
-const uint16_t PROGMEM tab_combo[]  = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM grv_combo[]  = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM lsft_combo[] = {KC_D, KC_C, COMBO_END};
-const uint16_t PROGMEM lctl_combo[] = {KC_F, KC_V, COMBO_END};
-const uint16_t PROGMEM lalt_combo[] = {KC_S, KC_X, COMBO_END};
-const uint16_t PROGMEM lgui_combo[] = {KC_A, KC_Z, COMBO_END};
-const uint16_t PROGMEM rsft_combo[] = {KC_K, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM rctl_combo[] = {KC_J, KC_M, COMBO_END};
-const uint16_t PROGMEM ralt_combo[] = {KC_L, KC_DOT, COMBO_END};
-const uint16_t PROGMEM rgui_combo[] = {KC_SCOLON, KC_SLASH, COMBO_END};
-const uint16_t PROGMEM haen_combo[] = {KC_H, KC_N, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    // clang-format off
-    [CB_TAB] = COMBO(tab_combo, KC_TAB),
-    [CB_GRV] = COMBO(grv_combo, KC_GRV),
-    [CB_LSFT] = COMBO(lsft_combo, KC_LSHIFT),
-    [CB_LCTL] = COMBO(lctl_combo, KC_LCTRL),
-    [CB_LALT] = COMBO(lalt_combo, KC_LALT),
-    [CB_LGUI] = COMBO(lgui_combo, KC_LGUI),
-    [CB_RSFT] = COMBO(rsft_combo, KC_RSHIFT),
-    [CB_RCTL] = COMBO(rctl_combo, KC_RCTRL),
-    [CB_RALT] = COMBO(ralt_combo, KC_LALT),
-    [CB_RGUI] = COMBO(rgui_combo, KC_LGUI),
-    [CB_HAEN] = COMBO(haen_combo, KC_HAEN),
-    // clang-format on
-};
