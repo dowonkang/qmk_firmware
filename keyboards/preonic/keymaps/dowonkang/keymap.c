@@ -18,36 +18,42 @@
 
 // Tap dance
 typedef struct {
+    // clang-format off
     bool is_press_action;
     uint8_t state;
+    // clang-format on
 } tap;
 
 enum {
+    // clang-format off
     SINGLE_TAP = 1,
     SINGLE_HOLD,
     DOUBLE_TAP,
     DOUBLE_HOLD
+    // clang-format on
 };
 
 enum {
-    LOWER,
-    RAISE
+    // clang-format off
+    LEFT_THUMB_LEFT,
+    RIGHT_THUMB_RIGHT
+    // clang-format on
 };
 
 uint8_t cur_dance(qk_tap_dance_state_t *state);
 
-void lower_finished(qk_tap_dance_state_t *state, void *user_data);
-void lower_reset(qk_tap_dance_state_t *state, void *user_data);
-void raise_finished(qk_tap_dance_state_t *state, void *user_data);
-void raise_reset(qk_tap_dance_state_t *state, void *user_data);
+void ltl_finished(qk_tap_dance_state_t *state, void *user_data);
+void ltl_reset(qk_tap_dance_state_t *state, void *user_data);
+void rtr_finished(qk_tap_dance_state_t *state, void *user_data);
+void rtr_reset(qk_tap_dance_state_t *state, void *user_data);
 
 // Aliases
-#define LTH TD(LOWER)
-#define LTL ALT_ESC
+#define LTH LOW
+#define LTL TD(LEFT_THUMB_LEFT)
 #define LTR CTL_TAB
-#define RTH TD(RAISE)
+#define RTH RSE
 #define RTL CTL_SPC
-#define RTR FN_BSPC
+#define RTR TD(RIGHT_THUMB_RIGHT)
 
 // Keymaps
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -102,6 +108,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
 }
 
+// Let's DANCE!
 uint8_t cur_dance(qk_tap_dance_state_t *state) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) {
@@ -119,18 +126,16 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
     return 8;
 }
 
-static tap lower_tap_state = {
-    .is_press_action = true,
-    .state = 0
-};
+static tap ltl_tap_state = {.is_press_action = true, .state = 0};
 
-void lower_finished(qk_tap_dance_state_t *state, void *user_data) {
-    lower_tap_state.state = cur_dance(state);
-    switch (lower_tap_state.state) {
+void ltl_finished(qk_tap_dance_state_t *state, void *user_data) {
+    ltl_tap_state.state = cur_dance(state);
+    switch (ltl_tap_state.state) {
         case SINGLE_TAP:
+            register_code(KC_ESCAPE);
             break;
         case SINGLE_HOLD:
-            layer_on(_LOWER);
+            register_code(KC_LALT);
             break;
         case DOUBLE_TAP:
             break;
@@ -142,12 +147,13 @@ void lower_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void lower_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (lower_tap_state.state) {
+void ltl_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (ltl_tap_state.state) {
         case SINGLE_TAP:
+            unregister_code(KC_ESCAPE);
             break;
         case SINGLE_HOLD:
-            layer_off(_LOWER);
+            unregister_code(KC_LALT);
             break;
         case DOUBLE_TAP:
             break;
@@ -157,21 +163,19 @@ void lower_reset(qk_tap_dance_state_t *state, void *user_data) {
         default:
             break;
     }
-    lower_tap_state.state = 0;
+    ltl_tap_state.state = 0;
 }
 
-static tap raise_tap_state = {
-    .is_press_action = true,
-    .state = 0
-};
+static tap rtr_tap_state = {.is_press_action = true, .state = 0};
 
-void raise_finished(qk_tap_dance_state_t *state, void *user_data) {
-    raise_tap_state.state = cur_dance(state);
-    switch (raise_tap_state.state) {
+void rtr_finished(qk_tap_dance_state_t *state, void *user_data) {
+    rtr_tap_state.state = cur_dance(state);
+    switch (rtr_tap_state.state) {
         case SINGLE_TAP:
+            register_code(KC_BSPACE);
             break;
         case SINGLE_HOLD:
-            layer_on(_RAISE);
+            register_code(KC_LALT);
             break;
         case DOUBLE_TAP:
             break;
@@ -183,12 +187,13 @@ void raise_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void raise_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (raise_tap_state.state) {
+void rtr_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (rtr_tap_state.state) {
         case SINGLE_TAP:
+            unregister_code(KC_BSPACE);
             break;
         case SINGLE_HOLD:
-            layer_off(_RAISE);
+            unregister_code(KC_LALT);
             break;
         case DOUBLE_TAP:
             break;
@@ -198,10 +203,12 @@ void raise_reset(qk_tap_dance_state_t *state, void *user_data) {
         default:
             break;
     }
-    raise_tap_state.state = 0;
+    rtr_tap_state.state = 0;
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [LOWER] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lower_finished, lower_reset),
-    [RAISE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, raise_finished, raise_reset)
+    // clang-format off
+    [LEFT_THUMB_LEFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ltl_finished, ltl_reset),
+    [RIGHT_THUMB_RIGHT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rtr_finished, rtr_reset)
+    // clang-format on
 };
