@@ -62,28 +62,17 @@ enum userspace_keycodes {
 #define MT_D LALT_T(KC_D)
 #define MT_F LCTL_T(KC_F)
 #define MT_C RALT_T(KC_C)
+#define MT_V HYPR_T(KC_V)
 #define MT_J RCTL_T(KC_J)
 #define MT_K LALT_T(KC_K)
 #define MT_L RGUI_T(KC_L)
 #define MT_SCLN RSFT_T(KC_SCLN)
+#define MT_M HYPR_T(KC_M)
 #define MT_COMM RALT_T(KC_COMM)
 #define MT_MINS RCTL_T(KC_MINS)
 #define MT_LBRC LALT_T(KC_LBRC)
 #define MT_RBRC RGUI_T(KC_RBRC)
-
-// Left-hand home row mods
-#define HMOD_A  LGUI_T(KC_A)
-#define HMOD_S  LALT_T(KC_S)
-#define HMOD_D  LSFT_T(KC_D)
-#define HMOD_F  LCTL_T(KC_F)
-#define HMOD_X  ALGR_T(KC_X)
-
-// Right-hand home row mods
-#define HMOD_J  RCTL_T(KC_J)
-#define HMOD_K  RSFT_T(KC_K)
-#define HMOD_L  LALT_T(KC_L)
-#define HMOD_SC RGUI_T(KC_SCLN)
-#define HMOD_DT ALGR_T(KC_DOT)
+#define MT_EQL HYPR_T(KC_EQL)
 
 // LOWER layer home row mods
 #define LMOD_J  RCTL_T(KC_MINS)
@@ -163,54 +152,27 @@ enum userspace_keycodes {
 #define ______QWERTY_RIGHT_2________ KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN
 #define ______QWERTY_RIGHT_3________ KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH
 
-// Home-Mods
-#define ______HOME_MOD_LEFT2________ HMOD_A , HMOD_S , HMOD_D , HMOD_F , KC_G
-#define ______HOME_MOD_LEFT3________ KC_Z   , HMOD_X , KC_C   , KC_V   , KC_B
-#define ______HOME_MOD_RIGHT2_______ KC_H   , HMOD_J , HMOD_K , HMOD_L , HMOD_SC
-#define ______HOME_MOD_RIGHT3_______ KC_N   , KC_M   , KC_COMM, HMOD_DT, KC_SLSH
-
-// Mods rows
-#define ______MOD_LEFT_2______       KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL
-#define ______MOD_LEFT_2____________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX
-#define ______MOD_LEFT_2_GRAVE______ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_GRV
-#define ______MOD_LEFT_3____________ KC_APP , KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______MOD_RIGHT_2___________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI
-#define ______MOD_RIGHT_3___________ XXXXXXX, XXXXXXX, XXXXXXX, KC_RALT, KC_APP
-
-// Symbol rows
-#define ______SYMBOL_2______________ KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______
-#define ______SYMBOL_2_MOD__________ KC_QUOT, LMOD_J , LMOD_K , LMOD_L , _______
-#define ______SYMBOL_3______________ KC_BSLS, KC_EQL , _______, _______, _______
-
-// VI-style navigation
-#define ______VI_NAV_ROW_2__________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX
-#define ______VI_NAV_ROW_3__________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX
-
 // Mouse
 #define ______MOUSE_VI_ROW_2________ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX
 #define ______MOUSE_VI_ROW_3________ KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX
 
-// Media
-#define ______MEDIA_____             KC_MPRV, KC_MPLY, KC_MNXT
-#define ______MEDIA_________________ XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX
-
 // Base
-#define ______BASE_LEFT_1___________ KC_Q   , KC_W   , KC_E   , KC_R   , KC_T
+#define ______BASE_LEFT_1___________ ______QWERTY_LEFT_1_________
 #define ______BASE_LEFT_2___________ MT_A   , MT_S   , MT_D   , MT_F   , KC_G
-#define ______BASE_LEFT_3___________ KC_Z   , KC_X   , MT_C   , KC_V   , KC_B
+#define ______BASE_LEFT_3___________ KC_Z   , KC_X   , MT_C   , MT_V   , KC_B
 
-#define ______BASE_RIGHT_1__________ KC_Y   , KC_U   , KC_I   , KC_O   , KC_P
+#define ______BASE_RIGHT_1__________ ______QWERTY_RIGHT_1________
 #define ______BASE_RIGHT_2__________ KC_H   , MT_J   , MT_K   , MT_L   , MT_SCLN
-#define ______BASE_RIGHT_3__________ KC_N   , KC_M   , MT_COMM, KC_DOT , KC_SLSH
+#define ______BASE_RIGHT_3__________ KC_N   , MT_M   , MT_COMM, KC_DOT , KC_SLSH
 
 // Lower
-#define ______LOWER_LEFT_1__________ KC_1   , KC_2   , KC_3   , KC_4   , KC_5
+#define ______LOWER_LEFT_1__________ ______NUMBER_12345__________
 #define ______LOWER_LEFT_2__________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_GRV
-#define ______LOWER_LEFT_3__________ KC_CAPS, KC_APP , KC_RALT, XXXXXXX, XXXXXXX
+#define ______LOWER_LEFT_3__________ KC_CAPS, KC_APP , KC_RALT, KC_HYPR, KC_SPACE
 
-#define ______LOWER_RIGHT_1_________ KC_6   , KC_7   , KC_8   , KC_9   , KC_0
+#define ______LOWER_RIGHT_1_________ ______NUMBER_67890__________
 #define ______LOWER_RIGHT_2_________ KC_QUOT, MT_MINS, MT_LBRC, MT_RBRC, _______
-#define ______LOWER_RIGHT_3_________ KC_BSLS, KC_EQL , _______, _______, _______
+#define ______LOWER_RIGHT_3_________ KC_BSLS, MT_EQL , _______, _______, _______
 
 // Raise
 #define ______RAISE_LEFT_1__________ ______LOWER_LEFT_1__________
@@ -224,16 +186,16 @@ enum userspace_keycodes {
 // Numpad
 #define ______NUMPAD_LEFT_1_________ KC_TAB , WBCK   , KC_UP  , WFWD   , KC_HOME
 #define ______NUMPAD_LEFT_2_________ KC_ESC , KC_LEFT, KC_DOWN, KC_RGHT, KC_END
-#define ______NUMPAD_LEFT_3_________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, XXXXXXX
+#define ______NUMPAD_LEFT_3_________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_SPACE
 
 #define ______NUMPAD_RIGHT_1________ KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS
 #define ______NUMPAD_RIGHT_2________ KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS
 #define ______NUMPAD_RIGHT_3________ KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT
 
 // Function
-#define ______FN_LEFT_1_____________ RSET, ______MEDIA_____, VOLU
-#define ______FN_LEFT_2_____________ ______MOD_LEFT_2______, VOLD
-#define ______FN_LEFT_3_____________ INS , ALTG, MENU, TAB , MUTE
+#define ______FN_LEFT_1_____________ RSET   , KC_MPRV, KC_MPLY, KC_MNXT, VOLU
+#define ______FN_LEFT_2_____________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, VOLD
+#define ______FN_LEFT_3_____________ KC_CAPS, KC_APP , KC_RALT, KC_HYPR, MUTE
 
 #define ______FN_RIGHT_1____________ KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4
 #define ______FN_RIGHT_2____________ KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8

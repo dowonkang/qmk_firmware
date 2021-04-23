@@ -70,19 +70,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case HMOD_A:
-        case HMOD_S:
-        // case HMOD_D:
-        case HMOD_F:
-        case HMOD_X:
-        case HMOD_J:
-        // case HMOD_K:
-        case HMOD_L:
-        case HMOD_SC:
-        case HMOD_DT:
-        case LMOD_J:
-        // case LMOD_K:
-        case LMOD_L:
         // case CTL_SPC:
         // case CTL_BSP:
         case SFT_ENT:
