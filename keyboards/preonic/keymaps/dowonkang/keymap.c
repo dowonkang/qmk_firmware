@@ -16,31 +16,12 @@
 
 #include "dowonkang.h"
 
-// Tap dance
-typedef struct {
-    // clang-format off
-    bool is_press_action;
-    uint8_t state;
-    // clang-format on
-} tap;
-
-enum {
-    // clang-format off
-    SINGLE_TAP = 1,
-    SINGLE_HOLD,
-    DOUBLE_TAP,
-    DOUBLE_HOLD
-    // clang-format on
-};
-
 enum {
     // clang-format off
     LEFT_THUMB_LEFT,
     RIGHT_THUMB_RIGHT
     // clang-format on
 };
-
-uint8_t cur_dance(qk_tap_dance_state_t *state);
 
 void ltl_finished(qk_tap_dance_state_t *state, void *user_data);
 void ltl_reset(qk_tap_dance_state_t *state, void *user_data);
@@ -97,6 +78,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______FN_LEFT_3_____________, XXXX, XXXX, ______FN_RIGHT_3____________,
         XXXX, XXXX, ____, ____, ____,    XXXX,    XXXX, XXXX, ____, XXXX, XXXX
     ),
+
+    [_ADJUST] = LAYOUT_wrapper(
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        ______FN_LEFT_1_____________, XXXX, XXXX, ______FN_RIGHT_1____________,
+        ______FN_LEFT_2_____________, XXXX, XXXX, ______MOUSE_VI_CURSOR_______,
+        ______FN_LEFT_3_____________, XXXX, XXXX, ______MOUSE_VI_WHEEL________,
+        XXXX, XXXX, XXXX, ____, XXXX,    XXXX,    XXXX, ____, XXXX, XXXX, XXXX
+    ),
     // clang-format on
 };
 
@@ -109,23 +98,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 // Let's DANCE!
-uint8_t cur_dance(qk_tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (state->interrupted || !state->pressed) {
-            return SINGLE_TAP;
-        } else {
-            return SINGLE_HOLD;
-        }
-    } else if (state->count == 2) {
-        if (state->interrupted || !state->pressed) {
-            return DOUBLE_TAP;
-        } else {
-            return DOUBLE_HOLD;
-        }
-    }
-    return 8;
-}
-
 static tap ltl_tap_state = {.is_press_action = true, .state = 0};
 
 void ltl_finished(qk_tap_dance_state_t *state, void *user_data) {
@@ -138,6 +110,7 @@ void ltl_finished(qk_tap_dance_state_t *state, void *user_data) {
             register_code(KC_LALT);
             break;
         case DOUBLE_TAP:
+            register_code(KC_ESCAPE);
             break;
         case DOUBLE_HOLD:
             layer_on(_NUMPAD);
@@ -156,6 +129,7 @@ void ltl_reset(qk_tap_dance_state_t *state, void *user_data) {
             unregister_code(KC_LALT);
             break;
         case DOUBLE_TAP:
+            unregister_code(KC_ESCAPE);
             break;
         case DOUBLE_HOLD:
             layer_off(_NUMPAD);
@@ -178,6 +152,7 @@ void rtr_finished(qk_tap_dance_state_t *state, void *user_data) {
             register_code(KC_LALT);
             break;
         case DOUBLE_TAP:
+            register_code(KC_BSPACE);
             break;
         case DOUBLE_HOLD:
             layer_on(_FUNCTION);
@@ -196,6 +171,7 @@ void rtr_reset(qk_tap_dance_state_t *state, void *user_data) {
             unregister_code(KC_LALT);
             break;
         case DOUBLE_TAP:
+            unregister_code(KC_BSPACE);
             break;
         case DOUBLE_HOLD:
             layer_off(_FUNCTION);
