@@ -194,4 +194,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 // Mouse
 #define ______MOUSE_VI_CURSOR_______ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX
 #define ______MOUSE_VI_WHEEL________ KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX
+
+// RGB
+#define ______RGB_CONTROL___________ RGB_RMOD,RGB_VAD, RGB_VAI, RGB_MOD, RGB_TOG
 // clang-format on
