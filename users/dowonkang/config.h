@@ -2,8 +2,15 @@
 
 // Macro doesn't work when link time optimization is enabled
 // See https://github.com/qmk/qmk_firmware/issues/3224#issuecomment-399769416
-// #define NO_ACTION_MACRO
-// #define NO_ACTION_FUNCTION
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+#define DISABLE_LEADER
+#ifndef NO_DEBUG
+#    define NO_DEBUG
+#endif
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#    define NO_PRINT
+#endif
 
 // 1000MHz polling rate
 #define USB_POLLING_INTERVAL_MS 1

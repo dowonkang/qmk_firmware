@@ -20,6 +20,7 @@ enum userspace_layers {
 };
 
 // Tap dance
+#ifdef TAP_DANCE_ENABLE
 typedef struct {
     // clang-format off
     bool is_press_action;
@@ -37,6 +38,7 @@ enum {
 };
 
 uint8_t cur_dance(qk_tap_dance_state_t *state);
+#endif
 
 // clang-format off
 // Layers
@@ -49,12 +51,15 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 
 // Layer-tap
 #define NUM_ESC LT(_NUMPAD, KC_ESCAPE)
+#define LT_Q    LT(_FUNCTION, KC_Q)
 #define LT_A    LT(_NUMPAD, KC_A)
 #define LT_SCLN LT(_MOUSE, KC_SCLN)
 
 // Mod-tap keys
-#define CTL_SPC LCTL_T(KC_SPACE)
-#define CTL_TAB LCTL_T(KC_TAB)
+#define MT_SPC  LCTL_T(KC_SPACE)
+#define MT_ESC  LALT_T(KC_ESCAPE)
+#define MT_TAB  LCTL_T(KC_TAB)
+#define MT_BSPC LGUI_T(KC_BSPACE)
 #define MT_A    LSFT_T(KC_A)
 #define MT_S    LGUI_T(KC_S)
 #define MT_D    LALT_T(KC_D)
@@ -152,7 +157,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define ______QWERTY_RIGHT_3________ KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH
 
 // Base
-#define ______BASE_LEFT_1___________ ______QWERTY_LEFT_1_________
+#define ______BASE_LEFT_1___________ LT_Q   , KC_W   , KC_E   , KC_R   , KC_T
 #define ______BASE_LEFT_2___________ LT_A   , MT_S   , MT_D   , MT_F   , KC_G
 #define ______BASE_LEFT_3___________ MT_Z   , KC_X   , MT_C   , MT_V   , KC_B
 
@@ -210,3 +215,18 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define ______RGB_CONTROL_2_________ RGB_RMOD,RGB_VAD, RGB_SPD, RGB_SAD, RGB_HUD
 #define ______RGB_CONTROL_3_________ RGB_TOG, RGB_M_SW,RGB_M_R, RGB_M_B, RGB_M_G
 // clang-format on
+
+// enum {
+//     // clang-format off
+//     LEFT_THUMB_LEFT,
+//     RIGHT_THUMB_RIGHT
+//     // clang-format on
+// };
+
+// void ltl_finished(qk_tap_dance_state_t *state, void *user_data);
+// void ltl_reset(qk_tap_dance_state_t *state, void *user_data);
+// void rtr_finished(qk_tap_dance_state_t *state, void *user_data);
+// void rtr_reset(qk_tap_dance_state_t *state, void *user_data);
+
+// #define LTL TD(LEFT_THUMB_LEFT)
+// #define RTR TD(RIGHT_THUMB_RIGHT)

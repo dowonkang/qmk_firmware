@@ -16,20 +16,18 @@
 #include "dowonkang.h"
 
 // clang-format off
-#define LTAB FN_TAB
-#define LESC NUM_ESC
 #define LTH  LOW
-#define LTL  NUM_TAB
+#define LTL  KC_LALT
 #define RTH  RSE
-#define RTR  MS_DEL
+#define RTR  KC_LGUI
 #define CSPC CTL_SPC
 // clang-format on
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_BASE] = LAYOUT_wrapper(
-        LTAB, ______BASE_LEFT_1___________,       ______BASE_RIGHT_1__________, BSPC,
-        LESC, ______BASE_LEFT_2___________,       ______BASE_RIGHT_2__________, ENT ,
+        TAB , ______BASE_LEFT_1___________,       ______BASE_RIGHT_1__________, BSPC,
+        ESC , ______BASE_LEFT_2___________,       ______BASE_RIGHT_2__________, ENT ,
         SFTL, ______BASE_LEFT_3___________,       ______BASE_RIGHT_3__________, SFTR,
                                 LTL , LTH , CSPC, RTH , RTR
     ),
@@ -52,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ____, ______NUMPAD_LEFT_1_________,       ______NUMPAD_RIGHT_1________, ____,
         ____, ______NUMPAD_LEFT_2_________,       ______NUMPAD_RIGHT_2________, ____,
         ____, ______NUMPAD_LEFT_3_________,       ______NUMPAD_RIGHT_3________, ____,
-                                ____, ____, SPC , P0  , PDOT
+                                ____, ____, CSPC, P0  , PDOT
     ),
 
     [_FUNCTION] = LAYOUT_wrapper(
@@ -63,10 +61,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_MOUSE] = LAYOUT_wrapper(
-        XXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX,       XXXX, ACL0, ACL1, ACL2, XXXX, ____,
-        XXXX, ______MOD_LEFT_2____________,       ______MOUSE_VI_ROW_2________, ____,
-        ____, ______MOD_LEFT_3____________,       ______MOUSE_VI_ROW_3________, ____,
-                                XXXX, XXXX, BTN2, BTN1, BTN3
+        XXXX, ______MOUSE_WHEEL_1_________,       ______MOUSE_CURSOR_1________, ____,
+        XXXX, ______MOUSE_WHEEL_2_________,       ______MOUSE_CURSOR_2________, ____,
+        ____, SFTL, XXXX, XXXX, XXXX, XXXX,       XXXX, ACL0, ACL1, ACL2, XXXX, ____,
+                                XXXX, XXXX, BTN3, BTN1, BTN2
+    ),
+
+    [_ADJUST] = LAYOUT_wrapper(
+        RSET, ______FN_LEFT_1_____________,       ______RGB_CONTROL_1_________, ____,
+        ____, ______FN_LEFT_2_____________,       ______RGB_CONTROL_2_________, ____,
+        ____, ______FN_LEFT_3_____________,       ______RGB_CONTROL_3_________, ____,
+                                XXXX, ____, XXXX, ____, XXXX
     ),
     // clang-format on
 };
