@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______NUMPAD_LEFT_1_________,              ______NUMPAD_RIGHT_1________,
         ______NUMPAD_LEFT_2_________,              ______NUMPAD_RIGHT_2________,
         ______NUMPAD_LEFT_3_________,              ______NUMPAD_RIGHT_3________,
-                    ____, XXXX, XXXX,              SPC , P0  , PDOT
+                    ____, XXXX, ____,              SPC , P0  , PDOT
     ),
 
     [_FUNCTION] = LAYOUT_wrapper(

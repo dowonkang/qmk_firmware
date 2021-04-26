@@ -49,6 +49,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 
 // Layer-tap
 #define NUM_ESC LT(_NUMPAD, KC_ESCAPE)
+#define LT_A    LT(_NUMPAD, KC_A)
 
 // Mod-tap keys
 #define CTL_SPC LCTL_T(KC_SPACE)
@@ -148,7 +149,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 
 // Base
 #define ______BASE_LEFT_1___________ ______QWERTY_LEFT_1_________
-#define ______BASE_LEFT_2___________ KC_A   , MT_S   , MT_D   , MT_F   , KC_G
+#define ______BASE_LEFT_2___________ LT_A   , MT_S   , MT_D   , MT_F   , KC_G
 #define ______BASE_LEFT_3___________ MT_Z   , KC_X   , MT_C   , MT_V   , KC_B
 
 #define ______BASE_RIGHT_1__________ ______QWERTY_RIGHT_1________
