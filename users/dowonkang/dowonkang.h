@@ -50,6 +50,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 // Layer-tap
 #define NUM_ESC LT(_NUMPAD, KC_ESCAPE)
 #define LT_A    LT(_NUMPAD, KC_A)
+#define LT_SCLN LT(_MOUSE, KC_SCLN)
 
 // Mod-tap keys
 #define CTL_SPC LCTL_T(KC_SPACE)
@@ -89,9 +90,12 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define MENU    KC_APP
 
 // Modifiers
+#define CTRL    KC_LCTL
+#define ALT     KC_LALT
 #define SFTL    KC_LSFT
 #define SFTR    KC_RSFT
 #define ALTG    KC_RALT
+#define GUI     KC_LGUI
 
 #define GRV     KC_GRAVE
 
@@ -153,7 +157,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define ______BASE_LEFT_3___________ MT_Z   , KC_X   , MT_C   , MT_V   , KC_B
 
 #define ______BASE_RIGHT_1__________ ______QWERTY_RIGHT_1________
-#define ______BASE_RIGHT_2__________ KC_H   , MT_J   , MT_K   , MT_L   , KC_SCLN
+#define ______BASE_RIGHT_2__________ KC_H   , MT_J   , MT_K   , MT_L   , LT_SCLN
 #define ______BASE_RIGHT_3__________ KC_N   , MT_M   , MT_COMM, KC_DOT , MT_SLSH
 
 // Lower
@@ -196,6 +200,13 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define ______MOUSE_VI_CURSOR_______ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX
 #define ______MOUSE_VI_WHEEL________ KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX
 
+#define ______MOUSE_CURSOR_1________ XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX
+#define ______MOUSE_CURSOR_2________ XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX
+#define ______MOUSE_WHEEL_1_________ XXXXXXX, XXXXXXX, KC_WH_U, XXXXXXX, XXXXXXX
+#define ______MOUSE_WHEEL_2_________ XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_R, XXXXXXX
+
 // RGB
-#define ______RGB_CONTROL___________ RGB_RMOD,RGB_VAD, RGB_VAI, RGB_MOD, RGB_TOG
+#define ______RGB_CONTROL_1_________ RGB_MOD, RGB_VAI, RGB_SPI, RGB_SAI, RGB_HUI
+#define ______RGB_CONTROL_2_________ RGB_RMOD,RGB_VAD, RGB_SPD, RGB_SAD, RGB_HUD
+#define ______RGB_CONTROL_3_________ RGB_TOG, RGB_M_SW,RGB_M_R, RGB_M_B, RGB_M_G
 // clang-format on

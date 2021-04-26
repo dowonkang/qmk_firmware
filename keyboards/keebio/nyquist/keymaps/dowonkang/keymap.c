@@ -59,10 +59,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     ESC , ____, TAB ,              XXXX, XXXX, ____
     ),
 
+    [_MOUSE] = LAYOUT_wrapper(
+        ______MOUSE_WHEEL_1_________,              ______MOUSE_CURSOR_1________,
+        ______MOUSE_WHEEL_2_________,              ______MOUSE_CURSOR_2________,
+        SFTL, XXXX, XXXX, XXXX, XXXX,              XXXX, ACL0, ACL1, ACL2, XXXX,
+                    ALT , GUI , CTRL,              BTN3, BTN1, BTN2
+    ),
+
     [_ADJUST] = LAYOUT_wrapper(
-        ______FN_LEFT_1_____________,              ______RGB_CONTROL___________,
-        ______FN_LEFT_2_____________,              ______MOUSE_VI_CURSOR_______,
-        ______FN_LEFT_3_____________,              ______MOUSE_VI_WHEEL________,
+        ______FN_LEFT_1_____________,              ______RGB_CONTROL_1_________,
+        ______FN_LEFT_2_____________,              ______RGB_CONTROL_2_________,
+        ______FN_LEFT_3_____________,              ______RGB_CONTROL_3_________,
                     XXXX, ____, XXXX,              XXXX, ____, XXXX
     )
     // clang-format on
