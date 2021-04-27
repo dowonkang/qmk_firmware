@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______RAISE_LEFT_1__________,              ______RAISE_RIGHT_1_________,
         ______RAISE_LEFT_2__________,              ______RAISE_RIGHT_2_________,
         ______RAISE_LEFT_3__________,              ______RAISE_RIGHT_3_________,
-                    ESC , ____, TAB ,              XXXX, ____, XXXX
+                    ____, ____, ____,              XXXX, ____, XXXX
     ),
 
     [_NUMPAD] = LAYOUT_wrapper(
@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______FN_LEFT_1_____________,              ______FN_RIGHT_1____________,
         ______FN_LEFT_2_____________,              ______FN_RIGHT_2____________,
         ______FN_LEFT_3_____________,              ______FN_RIGHT_3____________,
-                    ESC , ____, TAB ,              XXXX, XXXX, ____
+                    ____, ____, ____,              ____, ____, ____
     ),
 
     [_MOUSE] = LAYOUT_wrapper(
