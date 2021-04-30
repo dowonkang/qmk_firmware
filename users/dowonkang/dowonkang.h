@@ -101,8 +101,8 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define SFTR    KC_RSFT
 #define ALTG    KC_RALT
 #define GUI     KC_LGUI
-
-#define GRV     KC_GRAVE
+#define CTLR    KC_RCTL
+#define GUIR    KC_RGUI
 
 // Numpad
 #define P0      KC_P0
@@ -128,6 +128,9 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define VOLU    KC_VOLU
 #define VOLD    KC_VOLD
 #define MUTE    KC_MUTE
+#define MPRV    KC_MPRV
+#define MPLY    KC_MPLY
+#define MNXT    KC_MNXT
 
 // Mouse
 #define BTN1    KC_MS_BTN1
@@ -136,6 +139,10 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define ACL0    KC_ACL0
 #define ACL1    KC_ACL1
 #define ACL2    KC_ACL2
+
+// Etc.
+#define GRV     KC_GRAVE
+#define CAPS    KC_CAPSLOCK
 
 // XXXXXXX
 #define XXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
