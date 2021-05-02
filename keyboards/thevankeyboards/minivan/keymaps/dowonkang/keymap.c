@@ -2,12 +2,14 @@
 
 enum user_keycodes {
     // clang-format off
-    USPC = SAFE_RANGE
+    USPC = NEW_SAFE_RANGE
     // clang-format on
 };
 
 #define UTAB LT(_FUNCTION, KC_TAB)
 #define UESC LT(_NUMPAD, KC_ESCAPE)
+#define LOCK LAYER_LOCK
+#define LCLR LAYER_CLEAR
 
 // clang-format off
 #define ______BASE_RIGHT_2_LT_SCLN__ KC_H   , KC_J   , KC_K   , KC_L   , LT_SCLN
@@ -30,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         GRV , ______NUMBER_12345__________, ______NUMBER_67890__________, DEL ,
         ESC , ____________________________, ______LOW_RIGHT_2_____, ____, ____,
         ____, ____________________________, ______LOW_RIGHT_3_____, ____, ____,
-        ____, ____, ____,       ____      ,       SPC       , ____, ____, ____
+        ____, ____, ____,       ____      ,       ____      , ____, ____, ____
     ),
     [_RAISE] = LAYOUT_wrapper(
         GRV , ______NUMBER_12345__________, ______NUMBER_67890__________, DEL ,
@@ -56,16 +58,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX, ACL0, ACL1, ACL2, XXXX, ____,
         ____, ____, ____,       BTN3      ,       BTN1       , BTN2, ____, ____
     ),
+    [_GAME] = LAYOUT_wrapper(
+        TAB , ______QWERTY_LEFT_1_________, ______QWERTY_RIGHT_1________, BSPC,
+        ESC , ______QWERTY_LEFT_2_________, ______QWERTY_RIGHT_2________, ENT ,
+        SFTL, ______QWERTY_LEFT_3_________, ______QWERTY_RIGHT_3________, SFTR,
+        CTRL, XXXX, ALT ,       SPC       ,       GEXT      , ALTG, XXXX, CTLR
+    ),
+    [_GAMEXTRA] = LAYOUT_wrapper(
+        TAB , ______NUMBER_12345__________, ______FN_RIGHT_1____________, BSPC,
+        ESC , ______NUMBER_67890__________, ______FN_RIGHT_2____________, ENT ,
+        SFTL, ______QWERTY_LEFT_3_________, ______FN_RIGHT_3____________, SFTR,
+        CTRL, ____, ALT ,       SPC       ,       ____      , ALTG, CTLR, LCLR
+    ),
     [_ADJUST] = LAYOUT_wrapper(
         RSET, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
         CAPS, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
         XXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        XXXX, XXXX, XXXX,       ____      ,       ____      , ALTG, MENU, XXXX
-    )
+        XXXX, XXXX, XXXX,       ____      ,       ____      , ALTG, MENU, GAME
+    ),
     // clang-format on
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     static uint16_t u_spc_timer;
     switch (keycode) {
         case USPC:
@@ -119,7 +133,8 @@ layer_state_t layer_state_set_keymap(layer_state_t state) {
     }
     if (layer_state_cmp(state, _FUNCTION)) {
         led0r = 255;
-        led0g = 255;
+        led0g = 192;
+        led0b = 203;
     }
     setrgb(led0r, led0g, led0b, (LED_TYPE *)&led[0]);
 #endif  // RGBLIGHT_ENABLE

@@ -15,7 +15,17 @@ enum userspace_layers {
     _NUMPAD,
     _FUNCTION,
     _MOUSE,
-    _ADJUST
+    _GAME,
+    _GAMEXTRA,
+    _ADJUST,
+    // clang-format on
+};
+
+enum userspace_keycodes {
+    // clang-format off
+    LAYER_LOCK = SAFE_RANGE,
+    LAYER_CLEAR,
+    NEW_SAFE_RANGE
     // clang-format on
 };
 
@@ -48,6 +58,8 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define FN      MO(_FUNCTION)
 #define MOUS    MO(_MOUSE)
 #define ADJ     MO(_ADJUST)
+#define GAME    TO(_GAME)
+#define GEXT    MO(_GAMEXTRA)
 
 // Layer-tap
 #define NUM_ESC LT(_NUMPAD, KC_ESCAPE)
