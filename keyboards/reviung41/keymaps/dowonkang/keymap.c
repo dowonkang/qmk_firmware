@@ -20,7 +20,7 @@
 #define LTL  KC_LALT
 #define RTH  RSE
 #define RTR  KC_LGUI
-#define CSPC CTL_SPC
+#define CSPC MT_SPC
 // clang-format on
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

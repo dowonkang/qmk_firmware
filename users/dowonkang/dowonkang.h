@@ -187,7 +187,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 // Lower
 #define ______LOWER_LEFT_1__________ ______NUMBER_12345__________
 #define ______LOWER_LEFT_2__________ NUM_ESC, KC_LGUI, KC_LALT, KC_LCTL, KC_GRV
-#define ______LOWER_LEFT_3__________ MT_CAPS, KC_APP , KC_RALT, KC_HYPR, KC_SPC
+#define ______LOWER_LEFT_3__________ KC_LSFT, KC_APP , KC_RALT, KC_HYPR, KC_SPC
 
 #define ______LOWER_RIGHT_1_________ ______NUMBER_67890__________
 #define ______LOWER_RIGHT_2_________ KC_QUOT, MT_MINS, MT_LBRC, MT_RBRC, _______
@@ -205,16 +205,16 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 // Numpad
 #define ______NUMPAD_LEFT_1_________ KC_TAB , WBCK   , KC_UP  , WFWD   , KC_HOME
 #define ______NUMPAD_LEFT_2_________ KC_ESC , KC_LEFT, KC_DOWN, KC_RGHT, KC_END
-#define ______NUMPAD_LEFT_3_________ MT_CAPS, KC_LGUI, KC_LALT, KC_LCTL, KC_SPC
+#define ______NUMPAD_LEFT_3_________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_SPC
 
 #define ______NUMPAD_RIGHT_1________ KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS
 #define ______NUMPAD_RIGHT_2________ KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS
 #define ______NUMPAD_RIGHT_3________ KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT
 
 // Function
-#define ______FN_LEFT_1_____________ RSET   , KC_MPRV, KC_MPLY, KC_MNXT, VOLU
-#define ______FN_LEFT_2_____________ KC_ESC , KC_LGUI, KC_LALT, KC_LCTL, VOLD
-#define ______FN_LEFT_3_____________ MT_CAPS, KC_APP , KC_RALT, KC_HYPR, MUTE
+#define ______FN_LEFT_1_____________ RESET  , KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
+#define ______FN_LEFT_2_____________ KC_ESC , KC_LGUI, KC_LALT, KC_LCTL, KC_VOLD
+#define ______FN_LEFT_3_____________ KC_LSFT, KC_APP , KC_RALT, KC_HYPR, KC_MUTE
 
 #define ______FN_RIGHT_1____________ KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4
 #define ______FN_RIGHT_2____________ KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8
@@ -226,8 +226,8 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 
 #define ______MOUSE_CURSOR_1________ XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX
 #define ______MOUSE_CURSOR_2________ XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX
-#define ______MOUSE_WHEEL_1_________ XXXXXXX, XXXXXXX, KC_WH_U, XXXXXXX, XXXXXXX
-#define ______MOUSE_WHEEL_2_________ XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_R, XXXXXXX
+#define ______MOUSE_WHEEL_1_________ KC_TAB , WBCK   , KC_WH_U, WFWD   , KC_HOME
+#define ______MOUSE_WHEEL_2_________ KC_ESC , KC_WH_L, KC_WH_D, KC_WH_R, KC_END
 
 // RGB
 #define ______RGB_CONTROL_1_________ RGB_MOD, RGB_VAI, RGB_SPI, RGB_SAI, RGB_HUI

@@ -6,7 +6,7 @@
 #define LTL MT_ESC
 #define LTR MT_TAB
 #define RTH RSE
-#define RTL MT_SPC
+#define RTL SPC
 #define RTR MT_BSPC
 
 // clang-format on
@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______LOWER_LEFT_1__________,              ______LOWER_RIGHT_1_________,
         ______LOWER_LEFT_2__________,              ______LOWER_RIGHT_2_________,
         ______LOWER_LEFT_3__________,              ______LOWER_RIGHT_3_________,
-                    XXXX, ____, XXXX,              SPC , ____, BSPC
+                    XXXX, ____, XXXX,              ____, ____, BSPC
     ),
 
     [_RAISE] = LAYOUT_wrapper(
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______NUMPAD_LEFT_1_________,              ______NUMPAD_RIGHT_1________,
         ______NUMPAD_LEFT_2_________,              ______NUMPAD_RIGHT_2________,
         ______NUMPAD_LEFT_3_________,              ______NUMPAD_RIGHT_3________,
-                    ____, XXXX, ____,              SPC , P0  , PDOT
+                    ____, XXXX, ____,              ____, P0  , PDOT
     ),
 
     [_FUNCTION] = LAYOUT_wrapper(
@@ -56,9 +56,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_ADJUST] = LAYOUT_wrapper(
-        ______FN_LEFT_1_____________,              ______RGB_CONTROL_1_________,
-        ______FN_LEFT_2_____________,              ______RGB_CONTROL_2_________,
-        ______FN_LEFT_3_____________,              ______RGB_CONTROL_3_________,
+        RSET, XXXX, XXXX, XXXX, XXXX,              ______RGB_CONTROL_1_________,
+        CAPS, XXXX, XXXX, XXXX, XXXX,              ______RGB_CONTROL_2_________,
+        XXXXXXXXXXXXXXXXXXXXXXXXXXXX,              ______RGB_CONTROL_3_________,
                     XXXX, ____, XXXX,              XXXX, ____, XXXX
     )
     // clang-format on
