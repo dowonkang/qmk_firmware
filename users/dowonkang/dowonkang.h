@@ -66,6 +66,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define LT_Q    LT(_FUNCTION, KC_Q)
 #define LT_A    LT(_NUMPAD, KC_A)
 #define LT_SCLN LT(_MOUSE, KC_SCLN)
+#define LT_ENT  LT(_MOUSE, KC_ENT)
 
 // Mod-tap keys
 #define MT_SPC  LCTL_T(KC_SPACE)
@@ -122,10 +123,10 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define PENT    KC_PENT
 
 // Movements
-#define _UP_    KC_UP
-#define _DN_    KC_DOWN
-#define LEFT    KC_LEFT
-#define RGHT    KC_RGHT
+#define UARR    KC_UP
+#define DARR    KC_DOWN
+#define LARR    KC_LEFT
+#define RARR    KC_RIGHT
 #define HOME    KC_HOME
 #define END     KC_END
 #define PGUP    KC_PGUP
@@ -135,6 +136,8 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define WBCK    LALT(KC_LEFT)
 #define WFWD    LALT(KC_RIGHT)
 #define WREF    LCTL(KC_R)
+#define WTOP    KC_HOME
+#define WBTM    KC_END
 
 // Media
 #define VOLU    KC_VOLU
@@ -176,46 +179,79 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #define ______QWERTY_RIGHT_3________ KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH
 
 // Base
-#define ______BASE_LEFT_1___________ LT_Q   , KC_W   , KC_E   , KC_R   , KC_T
-#define ______BASE_LEFT_2___________ LT_A   , MT_S   , MT_D   , MT_F   , KC_G
-#define ______BASE_LEFT_3___________ MT_Z   , KC_X   , MT_C   , MT_V   , KC_B
-
-#define ______BASE_RIGHT_1__________ ______QWERTY_RIGHT_1________
-#define ______BASE_RIGHT_2__________ KC_H   , MT_J   , MT_K   , MT_L   , LT_SCLN
-#define ______BASE_RIGHT_3__________ KC_N   , MT_M   , MT_COMM, KC_DOT , MT_SLSH
+#ifdef ONLY_5_COLS
+#    define ______BASE_LEFT_1___________ LT_Q   , KC_W   , KC_E   , KC_R   , KC_T
+#    define ______BASE_LEFT_2___________ LT_A   , MT_S   , MT_D   , MT_F   , KC_G
+#    define ______BASE_LEFT_3___________ MT_Z   , KC_X   , MT_C   , MT_V   , KC_B
+#    define ______BASE_RIGHT_1__________ ______QWERTY_RIGHT_1________
+#    define ______BASE_RIGHT_2__________ KC_H   , MT_J   , MT_K   , MT_L   , LT_ENT
+#    define ______BASE_RIGHT_3__________ KC_N   , MT_M   , MT_COMM, KC_DOT , MT_SLSH
+#else
+#    define ______BASE_LEFT_1___________ ______QWERTY_LEFT_1_________
+#    define ______BASE_LEFT_2___________ ______QWERTY_LEFT_2_________
+#    define ______BASE_LEFT_3___________ ______QWERTY_LEFT_3_________
+#    define ______BASE_RIGHT_1__________ ______QWERTY_RIGHT_1________
+#    define ______BASE_RIGHT_2__________ KC_H   , KC_J   , KC_K   , KC_L   , LT_SCLN
+#    define ______BASE_RIGHT_3__________ ______QWERTY_RIGHT_3________
+#endif
 
 // Lower
-#define ______LOWER_LEFT_1__________ ______NUMBER_12345__________
-#define ______LOWER_LEFT_2__________ NUM_ESC, KC_LGUI, KC_LALT, KC_LCTL, KC_GRV
-#define ______LOWER_LEFT_3__________ KC_LSFT, KC_APP , KC_RALT, KC_HYPR, KC_SPC
-
-#define ______LOWER_RIGHT_1_________ ______NUMBER_67890__________
-#define ______LOWER_RIGHT_2_________ KC_QUOT, MT_MINS, MT_LBRC, MT_RBRC, _______
-#define ______LOWER_RIGHT_3_________ KC_BSLS, MT_EQL , _______, _______, _______
+#ifdef ONLY_5_COLS
+#    define ______LOWER_LEFT_1__________ ______NUMBER_12345__________
+#    define ______LOWER_LEFT_2__________ NUM_ESC, KC_LGUI, KC_LALT, KC_LCTL, KC_GRV
+#    define ______LOWER_LEFT_3__________ KC_LSFT, KC_APP , KC_RALT, KC_HYPR, KC_SPC
+#    define ______LOWER_RIGHT_1_________ ______NUMBER_67890__________
+#    define ______LOWER_RIGHT_2_________ KC_QUOT, MT_MINS, MT_LBRC, MT_RBRC, _______
+#    define ______LOWER_RIGHT_3_________ KC_BSLS, MT_EQL , _______, _______, _______
+#else
+#    define ______LOWER_LEFT_1__________ ______NUMBER_12345__________
+#    define ______LOWER_LEFT_2__________ ____________________________
+#    define ______LOWER_LEFT_3__________ ____________________________
+#    define ______LOWER_RIGHT_1_________ ______NUMBER_67890__________
+#    define ______LOWER_RIGHT_2_________ KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______
+#    define ______LOWER_RIGHT_3_________ KC_BSLS, KC_EQL , _______, _______, _______
+#endif
 
 // Raise
 #define ______RAISE_LEFT_1__________ ______LOWER_LEFT_1__________
 #define ______RAISE_LEFT_2__________ ______LOWER_LEFT_2__________
 #define ______RAISE_LEFT_3__________ ______LOWER_LEFT_3__________
 
-#define ______RAISE_RIGHT_1_________ KC_PSCR, XXXXXXX, KC_INS , KC_DEL , KC_BSPC
-#define ______RAISE_RIGHT_2_________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_ENT
-#define ______RAISE_RIGHT_3_________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , KC_RSFT
+#ifdef ONLY_5_COLS
+#    define ______RAISE_RIGHT_1_________ KC_PSCR, XXXXXXX, KC_INS , KC_DEL , KC_BSPC
+#    define ______RAISE_RIGHT_2_________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_ENT
+#    define ______RAISE_RIGHT_3_________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , KC_RSFT
+#else
+#    define ______RAISE_RIGHT_1_________ ______LOWER_RIGHT_1_________
+#    define ______RAISE_RIGHT_2_________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX
+#    define ______RAISE_RIGHT_3_________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX
+#endif
 
 // Numpad
-#define ______NUMPAD_LEFT_1_________ KC_TAB , WBCK   , KC_UP  , WFWD   , KC_HOME
-#define ______NUMPAD_LEFT_2_________ KC_ESC , KC_LEFT, KC_DOWN, KC_RGHT, KC_END
-#define ______NUMPAD_LEFT_3_________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_SPC
+#ifdef ONLY_5_COLS
+#    define ______NUMPAD_LEFT_1_________ KC_TAB , WBCK   , KC_UP  , WFWD   , WTOP
+#    define ______NUMPAD_LEFT_2_________ KC_ESC , KC_LEFT, KC_DOWN, KC_RGHT, WBTM
+#    define ______NUMPAD_LEFT_3_________ KC_LSFT, KC_LGUI, KC_LALT, KC_LCTL, KC_SPC
+#else
+#    define ______NUMPAD_LEFT_1_________ WBCK   , KC_UP  , WFWD   , WTOP   , XXXXXXX
+#    define ______NUMPAD_LEFT_2_________ KC_LEFT, KC_DOWN, KC_RGHT, WBTM   , XXXXXXX
+#    define ______NUMPAD_LEFT_3_________ KC_LGUI, KC_LALT, KC_LCTL, XXXXXXX, XXXXXXX
+#endif
 
 #define ______NUMPAD_RIGHT_1________ KC_NLCK, KC_P7  , KC_P8  , KC_P9  , KC_PMNS
 #define ______NUMPAD_RIGHT_2________ KC_PAST, KC_P4  , KC_P5  , KC_P6  , KC_PPLS
 #define ______NUMPAD_RIGHT_3________ KC_PSLS, KC_P1  , KC_P2  , KC_P3  , KC_PENT
 
 // Function
-#define ______FN_LEFT_1_____________ RESET  , KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
-#define ______FN_LEFT_2_____________ KC_ESC , KC_LGUI, KC_LALT, KC_LCTL, KC_VOLD
-#define ______FN_LEFT_3_____________ KC_LSFT, KC_APP , KC_RALT, KC_HYPR, KC_MUTE
-
+#ifdef ONLY_5_COLS
+#    define ______FN_LEFT_1_____________ RESET  , KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
+#    define ______FN_LEFT_2_____________ KC_ESC , KC_LGUI, KC_LALT, KC_LCTL, KC_VOLD
+#    define ______FN_LEFT_3_____________ KC_LSFT, KC_APP , KC_RALT, KC_HYPR, KC_MUTE
+#else
+#    define ______FN_LEFT_1_____________ KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU, XXXXXXX
+#    define ______FN_LEFT_2_____________ XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD, XXXXXXX
+#    define ______FN_LEFT_3_____________ XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, XXXXXXX
+#endif
 #define ______FN_RIGHT_1____________ KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4
 #define ______FN_RIGHT_2____________ KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8
 #define ______FN_RIGHT_3____________ KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12
@@ -223,29 +259,18 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 // Mouse
 #define ______MOUSE_VI_CURSOR_______ KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX
 #define ______MOUSE_VI_WHEEL________ KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX
-
 #define ______MOUSE_CURSOR_1________ XXXXXXX, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX
 #define ______MOUSE_CURSOR_2________ XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX
-#define ______MOUSE_WHEEL_1_________ KC_TAB , WBCK   , KC_WH_U, WFWD   , KC_HOME
-#define ______MOUSE_WHEEL_2_________ KC_ESC , KC_WH_L, KC_WH_D, KC_WH_R, KC_END
+#ifdef ONLY_5_COLS
+#    define ______MOUSE_WHEEL_1_________ KC_TAB , WBCK   , KC_WH_U, WFWD   , KC_HOME
+#    define ______MOUSE_WHEEL_2_________ KC_ESC , KC_WH_L, KC_WH_D, KC_WH_R, KC_END
+#else
+#    define ______MOUSE_WHEEL_1_________ XXXXXXX, WBCK   , KC_WH_U, WFWD   , KC_HOME
+#    define ______MOUSE_WHEEL_2_________ XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_R, KC_END
+#endif
 
 // RGB
 #define ______RGB_CONTROL_1_________ RGB_MOD, RGB_VAI, RGB_SPI, RGB_SAI, RGB_HUI
 #define ______RGB_CONTROL_2_________ RGB_RMOD,RGB_VAD, RGB_SPD, RGB_SAD, RGB_HUD
 #define ______RGB_CONTROL_3_________ RGB_TOG, RGB_M_SW,RGB_M_R, RGB_M_B, RGB_M_G
 // clang-format on
-
-// enum {
-//     // clang-format off
-//     LEFT_THUMB_LEFT,
-//     RIGHT_THUMB_RIGHT
-//     // clang-format on
-// };
-
-// void ltl_finished(qk_tap_dance_state_t *state, void *user_data);
-// void ltl_reset(qk_tap_dance_state_t *state, void *user_data);
-// void rtr_finished(qk_tap_dance_state_t *state, void *user_data);
-// void rtr_reset(qk_tap_dance_state_t *state, void *user_data);
-
-// #define LTL TD(LEFT_THUMB_LEFT)
-// #define RTR TD(RIGHT_THUMB_RIGHT)

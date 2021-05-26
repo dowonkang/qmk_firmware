@@ -3,3 +3,4 @@ LAYOUTS = preonic_1x2uC
 RGBLIGHT_ENABLE = no
 AUDIO_ENABLE = yes
 TAP_DANCE_ENABLE = no
+ONLY_5_COLS = yes

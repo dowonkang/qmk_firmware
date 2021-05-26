@@ -11,45 +11,36 @@ enum user_keycodes {
 #define LOCK LAYER_LOCK
 #define LCLR LAYER_CLEAR
 
-// clang-format off
-#define ______BASE_RIGHT_2_LT_SCLN__ KC_H   , KC_J   , KC_K   , KC_L   , LT_SCLN
-#define ______LOW_RIGHT_2_____       KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC
-#define ______LOW_RIGHT_3_____       KC_BSLS, KC_EQL , _______, _______
-#define ______RSE_RIGHT_1___________ KC_PSCR, XXXXXXX, XXXXXXX, XXXXXXX, KC_INS
-#define ______RSE_RIGHT_2___________ KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, XXXXXXX
-#define ______RSE_RIGHT_3___________ KC_HOME, KC_PGDN, KC_PGUP, KC_END , XXXXXXX
-// clang-format on
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_BASE] = LAYOUT_wrapper(
-        UTAB, ______QWERTY_LEFT_1_________, ______QWERTY_RIGHT_1________, BSPC,
-        UESC, ______QWERTY_LEFT_2_________, ______BASE_RIGHT_2_LT_SCLN__, ENT ,
-        SFTL, ______QWERTY_LEFT_3_________, ______QWERTY_RIGHT_3________, SFTR,
+        UTAB, ______BASE_LEFT_1___________, ______BASE_RIGHT_1__________, BSPC,
+        UESC, ______BASE_LEFT_2___________, ______BASE_RIGHT_2__________, ENT ,
+        SFTL, ______BASE_LEFT_3___________, ______BASE_RIGHT_3__________, SFTR,
         CTRL, GUI , ALT ,       LOW       ,       USPC      , ALT , GUIR, CTLR
     ),
     [_LOWER] = LAYOUT_wrapper(
-        GRV , ______NUMBER_12345__________, ______NUMBER_67890__________, DEL ,
-        ESC , ____________________________, ______LOW_RIGHT_2_____, ____, ____,
-        ____, ____________________________, ______LOW_RIGHT_3_____, ____, ____,
+        GRV , ______LOWER_LEFT_1__________, ______LOWER_RIGHT_1_________, DEL ,
+        ESC , ______LOWER_LEFT_2__________, ______LOWER_RIGHT_2_________, ____,
+        ____, ______LOWER_LEFT_3__________, ______LOWER_RIGHT_3_________, ____,
         ____, ____, ____,       ____      ,       ____      , ____, ____, ____
     ),
     [_RAISE] = LAYOUT_wrapper(
-        GRV , ______NUMBER_12345__________, ______NUMBER_67890__________, DEL ,
-        ESC , ____________________________, ______RSE_RIGHT_2___________, ____,
-        ____, ____, ____, ____, ____, ____, ______RSE_RIGHT_3___________, ____,
+        GRV , ______RAISE_LEFT_1__________, ______RAISE_RIGHT_1_________, DEL ,
+        ESC , ______RAISE_LEFT_2__________, ______RAISE_RIGHT_2_________, ____,
+        ____, ______RAISE_LEFT_3__________, ______RAISE_RIGHT_3_________, ____,
         ____, ____, ____,       ____      ,       ____      , ____, ____, ____
     ),
     [_NUMPAD] = LAYOUT_wrapper(
-        ____, WBCK, _UP_, WFWD, HOME, XXXX, ______NUMPAD_RIGHT_1________, ____,
-        ____, LEFT, _DN_, RGHT, END , XXXX, ______NUMPAD_RIGHT_2________, ____,
-        ____, XXXX, XXXX, XXXX, XXXX, XXXX, ______NUMPAD_RIGHT_3________, ____,
+        ____, ______NUMPAD_LEFT_1_________, ______NUMPAD_RIGHT_1________, ____,
+        ____, ______NUMPAD_LEFT_2_________, ______NUMPAD_RIGHT_2________, ____,
+        ____, ______NUMPAD_LEFT_3_________, ______NUMPAD_RIGHT_3________, ____,
         ____, ____, ____,       SPC       ,       P0        , PDOT, ____, ____
     ),
     [_FUNCTION] = LAYOUT_wrapper(
-        ____, MPRV, MPLY, MNXT, VOLU, XXXX, ______FN_RIGHT_1____________, INS ,
-        ____, XXXX, XXXX, XXXX, VOLD, XXXX, ______FN_RIGHT_2____________, ____,
-        ____, XXXX, XXXX, XXXX, MUTE, XXXX, ______FN_RIGHT_3____________, ____,
+        ____, ______FN_LEFT_1_____________, ______FN_RIGHT_1____________, INS ,
+        ____, ______FN_LEFT_2_____________, ______FN_RIGHT_2____________, ____,
+        ____, ______FN_LEFT_3_____________, ______FN_RIGHT_3____________, ____,
         ____, ____, ____,       ____      ,       SPC       , ____, ____, ____
     ),
     [_MOUSE] = LAYOUT_wrapper(
