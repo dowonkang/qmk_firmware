@@ -201,7 +201,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #    define ______LOWER_LEFT_2__________ NUM_ESC, KC_LGUI, KC_LALT, KC_LCTL, KC_GRV
 #    define ______LOWER_LEFT_3__________ KC_LSFT, KC_APP , KC_RALT, KC_HYPR, KC_SPC
 #    define ______LOWER_RIGHT_1_________ ______NUMBER_67890__________
-#    define ______LOWER_RIGHT_2_________ KC_QUOT, MT_MINS, MT_LBRC, MT_RBRC, _______
+#    define ______LOWER_RIGHT_2_________ KC_QUOT, MT_MINS, MT_LBRC, MT_RBRC, KC_SCLN
 #    define ______LOWER_RIGHT_3_________ KC_BSLS, MT_EQL , _______, _______, _______
 #else
 #    define ______LOWER_LEFT_1__________ ______NUMBER_12345__________
