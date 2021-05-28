@@ -16,6 +16,8 @@
 #include "dowonkang.h"
 
 // clang-format off
+#define UTAB LT(_FUNCTION, KC_TAB)
+#define UESC LT(_NUMPAD, KC_ESCAPE)
 #define LTH  LOW
 #define LTL  KC_LALT
 #define RTH  RSE
@@ -26,8 +28,8 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_BASE] = LAYOUT_wrapper(
-        TAB , ______BASE_LEFT_1___________,       ______BASE_RIGHT_1__________, BSPC,
-        ESC , ______BASE_LEFT_2___________,       ______BASE_RIGHT_2__________, ENT ,
+        UTAB, ______BASE_LEFT_1___________,       ______BASE_RIGHT_1__________, BSPC,
+        UESC, ______BASE_LEFT_2___________,       ______BASE_RIGHT_2__________, ENT ,
         SFTL, ______BASE_LEFT_3___________,       ______BASE_RIGHT_3__________, SFTR,
                                 LTL , LTH , CSPC, RTH , RTR
     ),
