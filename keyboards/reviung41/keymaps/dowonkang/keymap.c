@@ -35,14 +35,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_LOWER] = LAYOUT_wrapper(
-        TAB , ______LOWER_LEFT_1__________,       ______LOWER_RIGHT_1_________, DEL ,
+        GRV , ______LOWER_LEFT_1__________,       ______LOWER_RIGHT_1_________, DEL ,
         ESC , ______LOWER_LEFT_2__________,       ______LOWER_RIGHT_2_________, ____,
         ____, ______LOWER_LEFT_3__________,       ______LOWER_RIGHT_3_________, ____,
                                 XXXX, ____, SPC , ____, ____
     ),
 
     [_RAISE] = LAYOUT_wrapper(
-        TAB , ______RAISE_LEFT_1__________,       ______RAISE_RIGHT_1_________, DEL ,
+        GRV , ______RAISE_LEFT_1__________,       ______RAISE_RIGHT_1_________, DEL ,
         ESC , ______RAISE_LEFT_2__________,       ______RAISE_RIGHT_2_________, ____,
         ____, ______RAISE_LEFT_3__________,       ______RAISE_RIGHT_3_________, ____,
                                 ____, ____, SPC , ____, XXXX

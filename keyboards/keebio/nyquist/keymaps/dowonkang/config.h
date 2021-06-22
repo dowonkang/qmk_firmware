@@ -1,6 +1,7 @@
 #pragma once
 
 #define ONLY_5_COLS
+#define HOME_ROW_MODS
 
 #define LAYOUT_ortho_36( \
     L00, L01, L02, L03, L04,           R00, R01, R02, R03, R04, \
