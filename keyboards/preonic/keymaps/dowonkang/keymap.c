@@ -17,13 +17,8 @@
 #include "dowonkang.h"
 #include "muse.h"
 
-// Aliases
-#define LTH LOW
-#define LTL MT_ESC
-#define LTR MT_TAB
-#define RTH RSE
-#define RTL MT_SPC
-#define RTR MT_BSPC
+#define UTAB LT(_FUNCTION, KC_TAB)
+#define UESC LT(_NUMPAD, KC_ESCAPE)
 
 // clang-format off
 #define ______ADJUST_RIGHT_1________ XXXXXXX, MUV_IN , XXXXXXX, XXXXXXX, XXXXXXX
@@ -35,59 +30,59 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // clang-format off
     [_BASE] = LAYOUT_wrapper(
-        MUTE, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        ______BASE_LEFT_1___________, XXXX, XXXX, ______BASE_RIGHT_1__________,
-        ______BASE_LEFT_2___________, XXXX, XXXX, ______BASE_RIGHT_2__________,
-        ______BASE_LEFT_3___________, XXXX, XXXX, ______BASE_RIGHT_3__________,
-        XXXX, XXXX, LTL , LTH , LTR ,    XXXX,    RTL , RTH , RTR , XXXX, XXXX
+        MUTE, ______F_12345_______________, ______F_67890_______________, PSCR,
+        UTAB, ______BASE_LEFT_1___________, ______BASE_RIGHT_1__________, BSPC,
+        UESC, ______BASE_LEFT_2___________, ______BASE_RIGHT_2__________, ENT ,
+        SFTL, ______BASE_LEFT_3___________, ______BASE_RIGHT_3__________, SFTR,
+        CTRL, GUI , XXXX, ALT , LOW ,    SPC ,    RSE , ALT , MENU, GUIR, CTLR
     ),
 
     [_LOWER] = LAYOUT_wrapper(
-        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        ______LOWER_LEFT_1__________, XXXX, XXXX, ______LOWER_RIGHT_1_________,
-        ______LOWER_LEFT_2__________, XXXX, XXXX, ______LOWER_RIGHT_2_________,
-        ______LOWER_LEFT_3__________, XXXX, XXXX, ______LOWER_RIGHT_3_________,
-        XXXX, XXXX, XXXX, ____, XXXX,    XXXX,    ____, ____, BSPC, XXXX, XXXX
+        ____, ____________________________, ____________________________, ____,
+        GRV , ______LOWER_LEFT_1__________, ______LOWER_RIGHT_1_________, DEL ,
+        ESC , ______LOWER_LEFT_2__________, ______LOWER_RIGHT_2_________, ____,
+        ____, ______LOWER_LEFT_3__________, ______LOWER_RIGHT_3_________, ____,
+        ____, ____, XXXX, ____, ____,    ____,    ____, ____, ____, ____, ____
     ),
 
     [_RAISE] = LAYOUT_wrapper(
-        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        ______RAISE_LEFT_1__________, XXXX, XXXX, ______RAISE_RIGHT_1_________,
-        ______RAISE_LEFT_2__________, XXXX, XXXX, ______RAISE_RIGHT_2_________,
-        ______RAISE_LEFT_3__________, XXXX, XXXX, ______RAISE_RIGHT_3_________,
-        XXXX, XXXX, ____, ____, ____,    XXXX,    XXXX, ____, XXXX, XXXX, XXXX
+        ____, ____________________________, ____________________________, ____,
+        GRV , ______RAISE_LEFT_1__________, ______RAISE_RIGHT_1_________, DEL ,
+        ESC , ______RAISE_LEFT_2__________, ______RAISE_RIGHT_2_________, ____,
+        ____, ______RAISE_LEFT_3__________, ______RAISE_RIGHT_3_________, ____,
+        ____, ____, XXXX, ____, ____,    ____,    ____, ____, ____, ____, ____
     ),
 
     [_NUMPAD] = LAYOUT_wrapper(
-        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        ______NUMPAD_LEFT_1_________, XXXX, XXXX, ______NUMPAD_RIGHT_1________,
-        ______NUMPAD_LEFT_2_________, XXXX, XXXX, ______NUMPAD_RIGHT_2________,
-        ______NUMPAD_LEFT_3_________, XXXX, XXXX, ______NUMPAD_RIGHT_3________,
-        XXXX, XXXX, ____, ____, XXXX,    XXXX,    SPC , P0  , PDOT, XXXX, XXXX
+        ____, ____________________________, ____________________________, ____,
+        TAB , ______NUMPAD_LEFT_1_________, ______NUMPAD_RIGHT_1________, ____,
+        ____, ______NUMPAD_LEFT_2_________, ______NUMPAD_RIGHT_2________, ____,
+        ____, ______NUMPAD_LEFT_3_________, ______NUMPAD_RIGHT_3________, ____,
+        ____, ____, XXXX, ____, ____,    ____,    P0  , PDOT, ____, ____, ____
     ),
 
     [_FUNCTION] = LAYOUT_wrapper(
-        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        ______FN_LEFT_1_____________, XXXX, XXXX, ______FN_RIGHT_1____________,
-        ______FN_LEFT_2_____________, XXXX, XXXX, ______FN_RIGHT_2____________,
-        ______FN_LEFT_3_____________, XXXX, XXXX, ______FN_RIGHT_3____________,
-        XXXX, XXXX, ____, ____, ____,    XXXX,    XXXX, XXXX, ____, XXXX, XXXX
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, ____,
+        ____, ______FN_LEFT_1_____________, ______FN_RIGHT_1____________, INS ,
+        ____, ______FN_LEFT_2_____________, ______FN_RIGHT_2____________, ____,
+        ____, ______FN_LEFT_3_____________, ______FN_RIGHT_3____________, ____,
+        ____, ____, XXXX, ____, ____,    ____,    ____, ____, ____, ____, ____
     ),
 
     [_MOUSE] = LAYOUT_wrapper(
-        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        ______MOUSE_WHEEL_1_________, XXXX, XXXX, ______MOUSE_CURSOR_1________,
-        ______MOUSE_WHEEL_2_________, XXXX, XXXX, ______MOUSE_CURSOR_2________,
-        SFTL, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, ACL0, ACL1, ACL2, XXXX,
-        XXXX, XXXX, ALT , GUI , CTRL,    XXXX,    BTN3, BTN1, BTN2, XXXX, XXXX
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, ____,
+        TAB , ______MOUSE_WHEEL_1_________, ______MOUSE_CURSOR_1________, ____,
+        ESC , ______MOUSE_WHEEL_2_________, ______MOUSE_CURSOR_2________, ____,
+        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX, ACL0, ACL1, ACL2, XXXX, ____,
+        ____, ____, XXXX, ____, ____,    ____,    BTN3, BTN1, BTN2, XXXX, XXXX
     ),
 
     [_ADJUST] = LAYOUT_wrapper(
-        ____, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
-        ______FN_LEFT_1_____________, XXXX, XXXX, ______ADJUST_RIGHT_1________,
-        ______FN_LEFT_2_____________, XXXX, XXXX, ______ADJUST_RIGHT_2________,
-        ______FN_LEFT_3_____________, XXXX, XXXX, ______ADJUST_RIGHT_3________,
-        XXXX, XXXX, XXXX, ____, XXXX,    XXXX,    XXXX, ____, XXXX, XXXX, XXXX
+        RSET, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXXXXXXXXXXXXXXXXXXXXXXXXXX, XXXX,
+        XXXX, ______FN_LEFT_1_____________, ______ADJUST_RIGHT_1________, XXXX,
+        CAPS, ______FN_LEFT_2_____________, ______ADJUST_RIGHT_2________, XXXX,
+        XXXX, ______FN_LEFT_3_____________, ______ADJUST_RIGHT_3________, XXXX,
+        ____, ____, XXXX, ____, ____,    ____,    ____, ____, ____, ____, ____
     ),
     // clang-format on
 };
@@ -98,7 +93,7 @@ uint16_t muse_counter   = 0;
 uint8_t  muse_offset    = 70;
 uint16_t muse_tempo     = 50;
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (muse_mode) {
         if (IS_LAYER_ON(_RAISE)) {
             if (clockwise) {
@@ -120,6 +115,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_VOLD);
         }
     }
+    return true;
 }
 
 void dip_switch_update_user(uint8_t index, bool active) {
