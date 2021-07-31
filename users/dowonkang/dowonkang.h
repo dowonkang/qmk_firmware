@@ -229,7 +229,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state);
 #   define ______BASE_LEFT_2___________ ______QWERTY_LEFT_2_________
 #   define ______BASE_LEFT_3___________ ______QWERTY_LEFT_3_________
 #   define ______BASE_RIGHT_1__________ ______QWERTY_RIGHT_1________
-#   define ______BASE_RIGHT_2__________ KC_H   , MT_J   , MT_K   , MT_L   , LT_SCLN
+#   define ______BASE_RIGHT_2__________ KC_H   , KC_J   , KC_K   , KC_L   , LT_SCLN
 #   define ______BASE_RIGHT_3__________ ______QWERTY_RIGHT_3________
 #endif
 
