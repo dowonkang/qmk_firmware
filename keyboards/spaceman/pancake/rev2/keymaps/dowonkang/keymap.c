@@ -16,11 +16,14 @@
 
 #include QMK_KEYBOARD_H
 enum layers {
+    // clang-format off
     _DEFAULT,
     _LOWER,
     _RAISE,
     _NUMPAD,
     _FN,
+    _ADJUST
+    // clang-format on
 };
 
 // clang-format off
@@ -99,6 +102,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // clang-format on
         ),
 
+    [_ADJUST] = LAYOUT_ortho_4x12(
+        // clang-format off
+        RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, NK_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        // clang-format on
+        ),
+
 };
 
 #ifdef OLED_ENABLE
@@ -144,3 +156,8 @@ bool oled_task_user(void) {
     return false;
 }
 #endif
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return state;
+}
