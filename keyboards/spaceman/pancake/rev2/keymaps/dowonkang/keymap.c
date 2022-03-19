@@ -29,6 +29,7 @@ enum layers {
 #define RAISE   MO(_RAISE)
 #define FN      MO(_FN)
 #define ESCTL   MT(MOD_LCTL, KC_ESCAPE)
+#define CAPSCTL MT(MOD_LCTL, KC_CAPS_LOCK)
 #define LT_Q    LT(_FN, KC_Q)
 #define LT_A    LT(_NUMPAD, KC_A)
 
@@ -65,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT_ortho_4x12(
         // clang-format off
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL,
-        KC_CAPS, CTRL_A , CTRL_S , CTRL_D , CTRL_F , CTRL_G , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
+        CAPSCTL, CTRL_A , CTRL_S , CTRL_D , CTRL_F , CTRL_G , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
         _______, CTRL_Z , CTRL_X , CTRL_C , CTRL_V , CTRL_B , KC_BSLS, KC_EQL , _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
         // clang-format on
