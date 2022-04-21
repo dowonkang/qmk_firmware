@@ -37,22 +37,22 @@ enum layers {
 #define LT_A    LT(_NUMPAD, KC_A)
 
 // Ctrl Combos
-#define CTRL_A  LCTL(KC_A)
-#define CTRL_S  LCTL(KC_S)
-#define CTRL_D  LCTL(KC_D)
-#define CTRL_F  LCTL(KC_F)
-#define CTRL_G  LCTL(KC_G)
-#define CTRL_Z  LCTL(KC_Z)
-#define CTRL_X  LCTL(KC_X)
-#define CTRL_C  LCTL(KC_C)
-#define CTRL_V  LCTL(KC_V)
-#define CTRL_B  LCTL(KC_B)
+#define CMD_A   LCMD(KC_A)
+#define CMD_S   LCMD(KC_S)
+#define CMD_D   LCMD(KC_D)
+#define CMD_F   LCMD(KC_F)
+#define CMD_G   LCMD(KC_G)
+#define CMD_Z   LCMD(KC_Z)
+#define CMD_X   LCMD(KC_X)
+#define CMD_C   LCMD(KC_C)
+#define CMD_V   LCMD(KC_V)
+#define CMD_B   LCMD(KC_B)
 
 // Web Functions
-#define WBCK    LALT(KC_LEFT)
-#define WFWD    LALT(KC_RIGHT)
-#define WTOP    KC_HOME
-#define WBTM    KC_END
+#define WBCK    LCMD(KC_LBRC)
+#define WFWD    LCMD(KC_RBRC)
+#define WTOP    LCMD(KC_UP)
+#define WBTM    LCMD(KC_DOWN)
 // clang-format on
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -62,15 +62,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , LT_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
         ESCTL  , LT_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_ENT ,
         KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
-        KC_LCTL, FN     , KC_LGUI, KC_LALT, LOWER  , KC_SPC , KC_SPC , RAISE  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL
+        KC_LCTL, FN     , KC_LOPT, KC_LCMD, LOWER  , KC_SPC , KC_SPC , RAISE  , KC_RCMD, KC_ROPT, FN     , KC_RCTL
         // clang-format on
         ),
 
     [_LOWER] = LAYOUT_ortho_4x12(
         // clang-format off
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL,
-        CAPSCTL, CTRL_A , CTRL_S , CTRL_D , CTRL_F , CTRL_G , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
-        _______, CTRL_Z , CTRL_X , CTRL_C , CTRL_V , CTRL_B , KC_BSLS, KC_EQL , _______, _______, _______, _______,
+        CAPSCTL, CMD_A  , CMD_S  , CMD_D  , CMD_F  , CMD_G  , KC_QUOT, KC_MINS, KC_LBRC, KC_RBRC, _______, _______,
+        _______, CMD_Z  , CMD_X  , CMD_C  , CMD_V  , CMD_B  , KC_BSLS, KC_EQL , _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
         // clang-format on
         ),
@@ -78,8 +78,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT_ortho_4x12(
         // clang-format off
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL,
-        _______, CTRL_A , CTRL_S , CTRL_D , CTRL_F , CTRL_G , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
-        _______, CTRL_Z , CTRL_X , CTRL_C , CTRL_V , CTRL_B , KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, _______,
+        _______, CMD_A  , CMD_S  , CMD_D  , CMD_F  , CMD_G  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
+        _______, CMD_Z  , CMD_X  , CMD_C  , CMD_V  , CMD_B  , KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
         // clang-format on
         ),
@@ -95,8 +95,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FN] = LAYOUT_ortho_4x12(
         // clang-format off
-        _______, _______, WBCK   , WFWD   , KC_PGUP, _______, KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
-        _______, _______, WBTM   , WTOP   , KC_PGDN, _______, KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
+        _______, _______, WBCK   , WFWD   , WTOP   , _______, KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
+        _______, _______, _______, _______, WBTM   , _______, KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
         _______, _______, _______, _______, _______, _______, KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
         // clang-format on
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, NK_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
         // clang-format on
         ),
 
