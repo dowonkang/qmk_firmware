@@ -48,6 +48,10 @@ enum layers {
 #define CMD_V   LCMD(KC_V)
 #define CMD_B   LCMD(KC_B)
 
+// Screenshot
+#define SCRSH_A C(S(G(KC_3)))
+#define SCRSH_P C(S(G(KC_4)))
+
 // Web Functions
 #define WBCK    LCMD(KC_LBRC)
 #define WFWD    LCMD(KC_RBRC)
@@ -95,8 +99,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FN] = LAYOUT_ortho_4x12(
         // clang-format off
-        _______, _______, WBCK   , WFWD   , WTOP   , _______, KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
-        _______, _______, _______, _______, WBTM   , _______, KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
+        _______, _______, WBCK   , WFWD   , WTOP   , SCRSH_A, KC_PSCR, KC_F1  , KC_F2  , KC_F3  , KC_F4  , _______,
+        _______, _______, _______, _______, WBTM   , SCRSH_P, KC_SLCK, KC_F5  , KC_F6  , KC_F7  , KC_F8  , _______,
         _______, _______, _______, _______, _______, _______, KC_PAUS, KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
         // clang-format on
