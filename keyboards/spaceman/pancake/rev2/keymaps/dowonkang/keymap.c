@@ -48,6 +48,10 @@ enum layers {
 #define CMD_V   LCMD(KC_V)
 #define CMD_B   LCMD(KC_B)
 
+// Home/End
+#define HOME    LCMD(KC_LEFT)
+#define END     LCMD(KC_RIGHT)
+
 // Screenshot
 #define SCRSH_A C(S(G(KC_3)))
 #define SCRSH_P C(S(G(KC_4)))
@@ -83,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // clang-format off
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL,
         _______, CMD_A  , CMD_S  , CMD_D  , CMD_F  , CMD_G  , KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
-        _______, CMD_Z  , CMD_X  , CMD_C  , CMD_V  , CMD_B  , KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, _______,
+        _______, CMD_Z  , CMD_X  , CMD_C  , CMD_V  , CMD_B  , HOME   , KC_PGDN, KC_PGUP, END    , _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
         // clang-format on
         ),
