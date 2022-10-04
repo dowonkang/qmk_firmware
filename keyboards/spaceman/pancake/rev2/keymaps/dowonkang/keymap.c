@@ -15,6 +15,8 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "keymap_steno.h"
+
 enum layers {
     // clang-format off
     _DEFAULT,
@@ -22,6 +24,7 @@ enum layers {
     _RAISE,
     _NUMPAD,
     _FN,
+    _PLOVER,
     _ADJUST
     // clang-format on
 };
@@ -35,6 +38,8 @@ enum layers {
 #define CAPSCTL MT(MOD_LCTL, KC_CAPS_LOCK)
 #define LT_Q    LT(_FN, KC_Q)
 #define LT_A    LT(_NUMPAD, KC_A)
+#define PLOVER  TO(_PLOVER)
+#define EXIT    TO(_DEFAULT)
 
 // Ctrl Combos
 #define CMD_A   LCMD(KC_A)
@@ -110,12 +115,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // clang-format on
         ),
 
+    [_PLOVER] = LAYOUT_ortho_4x12(
+        // clang-format off
+        XXXXXXX, STN_S1 , STN_TL , STN_PL , STN_HL , STN_ST1, STN_ST3, STN_FR , STN_PR , STN_LR , STN_TR , STN_DR ,
+        XXXXXXX, STN_S2 , STN_KL , STN_WL , STN_RL , STN_ST2, STN_ST4, STN_RR , STN_BR , STN_GR , STN_SR , STN_ZR ,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        EXIT   , XXXXXXX, XXXXXXX, STN_N1 , STN_A  , STN_O  , STN_E  , STN_U  , STN_N2 , XXXXXXX, XXXXXXX, XXXXXXX
+        // clang-format on
+        ),
+
     [_ADJUST] = LAYOUT_ortho_4x12(
         // clang-format off
         RESET  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, NK_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        PLOVER , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
         // clang-format on
         ),
 
@@ -143,6 +157,12 @@ bool oled_task_user(void) {
     switch (get_highest_layer(layer_state)) {
         case 0:
             oled_write_P(PSTR("DEFLT\n"), false);
+            break;
+        case 6:
+            oled_write_P(PSTR("ADJST\n"), false);
+            break;
+        case 5:
+            oled_write_P(PSTR("PLOVR\n"), false);
             break;
         case 4:
             oled_write_P(PSTR("FUNCT\n"), false);
