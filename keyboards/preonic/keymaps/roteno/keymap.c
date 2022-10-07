@@ -63,8 +63,8 @@ enum layers {
 #define SCRSH_P C(S(G(KC_4)))
 
 // Web Functions
-#define WBCK    LCTL(KC_LBRC)
-#define WFWD    LCTL(KC_RBRC)
+#define WBCK    KC_WWW_BACK
+#define WFWD    KC_WWW_FORWARD
 #define WTOP    LCTL(KC_UP)
 #define WBTM    LCTL(KC_DOWN)
 // clang-format on
@@ -162,7 +162,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_VOLD);
         }
     }
-    return true;
+    return false;
 }
 
 bool dip_switch_update_user(uint8_t index, bool active) {
